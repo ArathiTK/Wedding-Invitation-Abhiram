@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+:root {
+  --gold: #c8a96e;
+  --gold-light: #e0c896;
+  --gold-dark: #a8854e;
+  --cream: #faf7f2;
+  --cream-dark: #f0ebe0;
+  --dark-text: #3a3a3a;
+  --medium-text: #6b6b6b;
+}
+
+@theme inline {
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-gold-dark: var(--gold-dark);
+  --color-cream: var(--cream);
+  --color-cream-dark: var(--cream-dark);
+  --color-dark-text: var(--dark-text);
+  --color-medium-text: var(--medium-text);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--cream);
+  color: var(--dark-text);
+}
+
+.font-serif {
+  font-family: 'Cormorant Garamond', 'Crimson Text', 'Playfair Display', Georgia, serif;
+}
+
+.ornament-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.ornament-divider::before,
+.ornament-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+
+.gold-border-card {
+  border: 1px solid rgba(200, 169, 110, 0.4);
+  box-shadow: 0 4px 24px rgba(200, 169, 110, 0.1);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+/* Leaflet map fixes */
+.leaflet-container {
+  background: var(--cream-dark);
+}
