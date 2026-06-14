@@ -48,11 +48,12 @@ export default function CountdownTimer() {
       {units.map(({ label, value }) => (
         <div key={label} className="flex flex-col items-center min-w-[60px]">
           <span
-            className="font-[var(--font-cormorant)] text-4xl font-light text-[#c8a96e] tabular-nums leading-none"
+            className="text-4xl font-light text-[#c8a96e] tabular-nums leading-none"
+            style={{ fontFamily: "var(--font-seasons)" }}
           >
             {pad(value)}
           </span>
-          <span className="text-xs tracking-widest uppercase text-[#6b6b6b] mt-1">{label}</span>
+          <span className="text-xs tracking-widest uppercase text-[#4a3826]/40 mt-1">{label}</span>
         </div>
       ))}
     </div>

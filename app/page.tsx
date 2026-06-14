@@ -1,3 +1,5 @@
+import PageWrapper from "./components/PageWrapper";
+import SaveTheDateSection from "./components/SaveTheDateSection";
 import HeroSection from "./components/HeroSection";
 import InvitationMessage from "./components/InvitationMessage";
 import CeremonySection from "./components/CeremonySection";
@@ -9,15 +11,18 @@ import Footer from "./components/Footer";
 
 export default function Page() {
   return (
-    <main>
-      <HeroSection />
-      <InvitationMessage />
-      <CeremonySection />
-      <ReceptionSection />
-      <ParentsFamilySection />
-      <VenueMap />
-      <RSVPForm />
-      <Footer />
-    </main>
+    <PageWrapper>
+      <main>
+        <SaveTheDateSection />
+        <HeroSection />
+        <InvitationMessage />
+        <CeremonySection />
+        <ReceptionSection />
+        <ParentsFamilySection />
+        <VenueMap />
+        <RSVPForm />
+        <Footer />
+      </main>
+    </PageWrapper>
   );
 }

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, DM_Sans } from "next/font/google";
+import { Cormorant_Garamond, DM_Sans, Great_Vibes } from "next/font/google";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -7,6 +7,13 @@ const cormorant = Cormorant_Garamond({
   weight: ["300", "400", "500", "600", "700"],
   style: ["normal", "italic"],
   variable: "--font-cormorant",
+  display: "swap",
+});
+
+const greatVibes = Great_Vibes({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-great-vibes",
   display: "swap",
 });
 
@@ -36,9 +43,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${dmSans.variable} h-full`}>
-      <body className="min-h-full bg-[#faf7f2] text-[#3a3a3a] antialiased">
-        {children}
+    <html lang="en" className={`${cormorant.variable} ${dmSans.variable} ${greatVibes.variable} h-full`}>
+      <body className="min-h-full antialiased" style={{ backgroundColor: "#2b2017" }}>
+        {/* Mobile-width container — centred on desktop, full-width on mobile */}
+        <div
+          className="relative mx-auto overflow-x-hidden"
+          style={{ maxWidth: 430, minHeight: "100dvh", backgroundColor: "#f8f2e7" }}
+        >
+          {children}
+        </div>
       </body>
     </html>
   );

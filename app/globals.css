@@ -1,13 +1,47 @@
 @import "tailwindcss";
 
+/* ── The Seasons — self-hosted ── */
+@font-face {
+  font-family: 'The Seasons';
+  src: url('/fonts/TheSeasons-Light.woff2') format('woff2'),
+       url('/fonts/TheSeasons-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'The Seasons';
+  src: url('/fonts/TheSeasons-Regular.woff2') format('woff2'),
+       url('/fonts/TheSeasons-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'The Seasons';
+  src: url('/fonts/TheSeasons-Italic.woff2') format('woff2'),
+       url('/fonts/TheSeasons-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'The Seasons';
+  src: url('/fonts/TheSeasons-Bold.woff2') format('woff2'),
+       url('/fonts/TheSeasons-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --gold: #c8a96e;
   --gold-light: #e0c896;
   --gold-dark: #a8854e;
-  --cream: #faf7f2;
-  --cream-dark: #f0ebe0;
-  --dark-text: #3a3a3a;
-  --medium-text: #6b6b6b;
+  --cream: #f8f2e7;
+  --cream-mid: #efe1cb;
+  --espresso: #4a3826;
+  --footer-deep: #3d2c1c;
 }
 
 @theme inline {
@@ -15,9 +49,14 @@
   --color-gold-light: var(--gold-light);
   --color-gold-dark: var(--gold-dark);
   --color-cream: var(--cream);
-  --color-cream-dark: var(--cream-dark);
-  --color-dark-text: var(--dark-text);
-  --color-medium-text: var(--medium-text);
+  --color-cream-mid: var(--cream-mid);
+  --color-espresso: var(--espresso);
+  --color-footer-deep: var(--footer-deep);
+}
+
+/* Make The Seasons available as a CSS variable used across all components */
+:root {
+  --font-seasons: 'The Seasons', 'Cormorant Garamond', Georgia, serif;
 }
 
 html {
@@ -26,48 +65,24 @@ html {
 
 body {
   background-color: var(--cream);
-  color: var(--dark-text);
-}
-
-.font-serif {
-  font-family: 'Cormorant Garamond', 'Crimson Text', 'Playfair Display', Georgia, serif;
-}
-
-.ornament-divider {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.ornament-divider::before,
-.ornament-divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  color: var(--espresso);
 }
 
 .gold-border-card {
-  border: 1px solid rgba(200, 169, 110, 0.4);
-  box-shadow: 0 4px 24px rgba(200, 169, 110, 0.1);
+  border: 1px solid rgba(200, 169, 110, 0.35);
+  box-shadow: 0 4px 24px rgba(120, 90, 50, 0.1);
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in-up {
-  animation: fadeInUp 0.8s ease forwards;
+/* Metallic gold heading text */
+.heading-gold {
+  background: linear-gradient(105deg, #8a6a35 0%, #d9b76b 22%, #fdf0ce 45%, #c8a96e 65%, #9c7a3f 85%, #e0c896 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 /* Leaflet map fixes */
 .leaflet-container {
-  background: var(--cream-dark);
+  background: var(--cream-mid);
 }
