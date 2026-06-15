@@ -35,12 +35,12 @@
 }
 
 :root {
-  --gold: #c8a96e;
-  --gold-light: #e0c896;
-  --gold-dark: #a8854e;
-  --cream: #f8f2e7;
-  --cream-mid: #efe1cb;
-  --espresso: #4a3826;
+  --gold: #c9a876;
+  --gold-light: #e3c89a;
+  --gold-dark: #a9824f;
+  --cream: #2c2521;
+  --cream-mid: #221c18;
+  --espresso: #f0e6da;
   --footer-deep: #3d2c1c;
 }
 
@@ -56,7 +56,7 @@
 
 /* Make The Seasons available as a CSS variable used across all components */
 :root {
-  --font-seasons: 'The Seasons', 'Cormorant Garamond', Georgia, serif;
+  --font-seasons: 'The Seasons', Georgia, serif;
 }
 
 html {
@@ -66,20 +66,48 @@ html {
 body {
   background-color: var(--cream);
   color: var(--espresso);
+  font-family: var(--font-cormorant), serif;
 }
 
 .gold-border-card {
-  border: 1px solid rgba(200, 169, 110, 0.35);
-  box-shadow: 0 4px 24px rgba(120, 90, 50, 0.1);
+  border: 1px solid rgba(201, 168, 118, 0.25);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
 }
 
-/* Metallic gold heading text */
+/* Heading text — warm gold-cream, glowing softly on the dark background */
 .heading-gold {
-  background: linear-gradient(105deg, #8a6a35 0%, #d9b76b 22%, #fdf0ce 45%, #c8a96e 65%, #9c7a3f 85%, #e0c896 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
+  color: #e3c89a;
+  letter-spacing: 0.01em;
+}
+
+/* Display titles — light-weight serif caps with wide tracking, à la "SAVE THE DATE" */
+.heading-display {
+  font-family: var(--font-cormorant), serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+}
+
+/* Script-style couple names — same light weight as other headings, à la "Abhiram & Athira" */
+.heading-script {
+  font-family: var(--font-cormorant), serif;
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 0.01em;
+}
+
+/* Force the lightest available weight even for italic glyphs in variable-font browsers */
+.heading-script,
+.heading-script * {
+  font-variation-settings: "wght" 300;
+}
+
+/* Alternating section backgrounds */
+.bg-paper-1 {
+  background-color: var(--cream);
+}
+.bg-paper-2 {
+  background-color: var(--cream-mid);
 }
 
 /* Leaflet map fixes */

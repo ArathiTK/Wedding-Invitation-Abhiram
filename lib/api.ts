@@ -1,11 +1,6 @@
 export interface RSVPData {
   name: string;
-  email: string;
-  phone?: string;
-  guests: number;
   attendance: "ceremony" | "reception" | "both";
-  dietary: string;
-  requirements?: string;
 }
 
 export async function submitRSVP(data: RSVPData): Promise<{ success: boolean; message: string }> {

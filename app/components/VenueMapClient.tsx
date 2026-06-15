@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -19,27 +19,27 @@ export default function VenueMapClient() {
   const receptionPos: [number, number] = [WEDDING.reception.coordinates.lat, WEDDING.reception.coordinates.lng];
 
   return (
-    <div className="grid md:grid-cols-2 gap-6">
+    <div className="grid md:grid-cols-2 gap-4">
       {[
-        { label: "Wedding Ceremony", venue: WEDDING.ceremony, pos: ceremonyPos, color: "#c8a96e", zoom: 15 },
-        { label: "Reception", venue: WEDDING.reception, pos: receptionPos, color: "#a8854e", zoom: 14 },
+        { label: "Wedding Ceremony", venue: WEDDING.ceremony, pos: ceremonyPos, color: "#c9a876", zoom: 15 },
+        { label: "Reception", venue: WEDDING.reception, pos: receptionPos, color: "#a9824f", zoom: 14 },
       ].map(({ label, venue, pos, color, zoom }) => (
         <div key={label} className="rounded-lg overflow-hidden gold-border-card">
-          <div className="px-5 py-4 border-b border-[#c8a96e]/20" style={{ backgroundColor: "#f8f2e7" }}>
-            <p className="text-xs tracking-widest uppercase text-[#c8a96e]">{label}</p>
-            <p className="text-xl text-[#4a3826] mt-1" style={{ fontFamily: "var(--font-seasons)" }}>{venue.venue}</p>
-            <p className="text-sm text-[#4a3826]/60">{venue.address}</p>
+          <div className="px-4 py-2.5 border-b border-[#c9a876]/20" style={{ backgroundColor: "#3a322c" }}>
+            <p className="heading-display text-xs text-[#c9a876]">{label}</p>
+            <p className="text-lg text-[#f0e6da] mt-1" style={{ fontFamily: "var(--font-seasons)" }}>{venue.venue}</p>
+            <p className="text-sm text-[#f0e6da]/60">{venue.address}</p>
           </div>
-          <MapContainer center={pos} zoom={zoom} style={{ height: "240px", width: "100%" }} scrollWheelZoom={false}>
+          <MapContainer center={pos} zoom={zoom} style={{ height: "160px", width: "100%" }} scrollWheelZoom={false}>
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               attribution='&copy; <a href="https://openstreetmap.org">OpenStreetMap</a>'/>
             <Marker position={pos} icon={createIcon(color)}>
               <Popup><strong>{venue.venue}</strong><br />{venue.address}</Popup>
             </Marker>
           </MapContainer>
-          <div className="px-5 py-3" style={{ backgroundColor: "#f8f2e7" }}>
+          <div className="px-4 py-2" style={{ backgroundColor: "#3a322c" }}>
             <a href={venue.googleMapsUrl} target="_blank" rel="noopener noreferrer"
-              className="text-sm text-[#c8a96e] hover:text-[#e0c896] flex items-center gap-2 transition-colors">
+              className="text-sm text-[#c9a876] hover:text-[#c9a876] flex items-center gap-2 transition-colors">
               <svg width="13" height="13" fill="none" viewBox="0 0 16 16">
                 <path d="M8 1C5.2 1 3 3.2 3 6c0 4 5 9 5 9s5-5 5-9c0-2.8-2.2-5-5-5z" stroke="currentColor" strokeWidth="1.3"/>
                 <circle cx="8" cy="6" r="1.5" stroke="currentColor" strokeWidth="1.3"/>

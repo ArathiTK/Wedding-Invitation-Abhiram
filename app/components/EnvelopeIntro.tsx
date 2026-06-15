@@ -67,7 +67,7 @@ export default function EnvelopeIntro({ onOpen }: Props) {
           animate={{ y: [0, -5, 0] }}
           transition={{ repeat: Infinity, duration: 2.4, ease: "easeInOut" }}
           style={{
-            fontFamily: "var(--font-dm-sans)",
+            fontFamily: "var(--font-cormorant)",
             fontSize: "0.65rem",
             letterSpacing: "0.28em",
             textTransform: "uppercase",

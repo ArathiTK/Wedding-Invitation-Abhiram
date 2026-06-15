@@ -7,7 +7,6 @@ import ReceptionSection from "./components/ReceptionSection";
 import ParentsFamilySection from "./components/ParentsFamilySection";
 import VenueMap from "./components/VenueMap";
 import RSVPForm from "./components/RSVPForm";
-import Footer from "./components/Footer";
 
 export default function Page() {
   return (
@@ -21,7 +20,6 @@ export default function Page() {
         <ParentsFamilySection />
         <VenueMap />
         <RSVPForm />
-        <Footer />
       </main>
     </PageWrapper>
   );

@@ -3,21 +3,16 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
   try {
     const data = await req.json();
-    const { name, email, guests, attendance, dietary, requirements, phone } = data;
+    const { name, attendance } = data;
 
-    if (!name || !email || !guests || !attendance) {
+    if (!name || !attendance) {
       return NextResponse.json({ message: "Missing required fields" }, { status: 400 });
     }
 
     // Log RSVP to console (Vercel logs) — replace with email/DB integration as needed
     console.log("RSVP Received:", {
       name,
-      email,
-      phone,
-      guests,
       attendance,
-      dietary,
-      requirements,
       timestamp: new Date().toISOString(),
     });
 

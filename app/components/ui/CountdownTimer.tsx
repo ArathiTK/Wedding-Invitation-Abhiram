@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useEffect, useState } from "react";
 
 const WEDDING_DATE = new Date("2026-11-06T10:00:00+05:30");
@@ -48,12 +48,12 @@ export default function CountdownTimer() {
       {units.map(({ label, value }) => (
         <div key={label} className="flex flex-col items-center min-w-[60px]">
           <span
-            className="text-4xl font-light text-[#c8a96e] tabular-nums leading-none"
+            className="text-3xl font-light text-[#c9a876] tabular-nums leading-none"
             style={{ fontFamily: "var(--font-seasons)" }}
           >
             {pad(value)}
           </span>
-          <span className="text-xs tracking-widest uppercase text-[#4a3826]/40 mt-1">{label}</span>
+          <span className="text-xs tracking-widest uppercase text-[#f0e6da]/40 mt-1">{label}</span>
         </div>
       ))}
     </div>
