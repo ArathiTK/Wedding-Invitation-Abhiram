@@ -30,6 +30,7 @@ export default function EnvelopeIntro({ onOpen, onTap, onVideoEnd }: Props) {
   function handleTap() {
     if (state === "idle") {
       setState("playing");
+      if (videoRef.current) videoRef.current.playbackRate = 1.4;
       videoRef.current?.play();
       onTap?.();
     } else if (state === "ended") {

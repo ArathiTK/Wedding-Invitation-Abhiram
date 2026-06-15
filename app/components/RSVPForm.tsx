@@ -26,7 +26,7 @@ export default function RSVPForm() {
   if (submitted) {
     return (
       <section id="rsvp" className="h-[100dvh] flex flex-col justify-center overflow-y-auto py-10 px-6 bg-paper-2">
-        <div className="max-w-xl mx-auto text-center">
+        <div className="max-w-3xl mx-auto w-full text-center">
           <div className="gold-border-card rounded-lg p-12" style={{ backgroundColor: "#332c26" }}>
             <div className="flex justify-center mb-6">
               <div className="w-14 h-14 rounded-full border-2 border-[#c9a876] flex items-center justify-center">
@@ -45,7 +45,7 @@ export default function RSVPForm() {
 
   return (
     <section id="rsvp" className="h-[100dvh] flex flex-col justify-center overflow-y-auto py-[clamp(1.5rem,5vh,2.5rem)] px-6 bg-paper-2">
-      <div className="max-w-xl mx-auto">
+      <div className="max-w-3xl mx-auto w-full">
         <AnimateOnScroll>
           <p className="heading-display text-xs text-[#c9a876] text-center mb-[clamp(0.5rem,2vh,0.75rem)]">RSVP</p>
           <h2 className="heading-gold heading-display text-center mb-[clamp(0.5rem,2vh,0.75rem)]"
@@ -58,7 +58,7 @@ export default function RSVPForm() {
         </AnimateOnScroll>
 
         <AnimateOnScroll delay={0.15}>
-          <div className="gold-border-card rounded-lg p-6 md:p-8" style={{ backgroundColor: "#332c26" }}>
+          <div className="gold-border-card rounded-lg p-6 md:p-8 w-full" style={{ backgroundColor: "#332c26" }}>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-[clamp(0.75rem,3vh,1rem)]" noValidate>
               <div>
                 <label className={labelClass}>Full Name *</label>

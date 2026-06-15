@@ -4,7 +4,7 @@ import { AnimatePresence } from "framer-motion";
 import EnvelopeIntro from "./EnvelopeIntro";
 import FallingFlowers from "./FallingFlowers";
 
-const TRACK = "/assets/audio/bgm-kashia-beloved.mp3";
+const TRACK = "/assets/audio/bgm-bansuri-tarana.mp3";
 const TARGET_VOLUME = 0.35;
 const FADE_DURATION = 4000;
 
