@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 
 interface Props {
   onOpen: () => void;
+  onTap?: () => void;
 }
 
 const IMG   = "/assets/reference/envelope.png";
@@ -11,7 +12,7 @@ const VIDEO = "/assets/reference/hero-video.mp4";
 
 type State = "idle" | "playing" | "done";
 
-export default function EnvelopeIntro({ onOpen }: Props) {
+export default function EnvelopeIntro({ onOpen, onTap }: Props) {
   const [state, setState] = useState<State>("idle");
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -19,6 +20,7 @@ export default function EnvelopeIntro({ onOpen }: Props) {
     if (state !== "idle") return;
     setState("playing");
     videoRef.current?.play();
+    onTap?.();
   }
 
   function handleEnded() {
