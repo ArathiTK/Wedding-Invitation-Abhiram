@@ -5,34 +5,55 @@ import { motion } from "framer-motion";
 interface Props {
   onOpen: () => void;
   onTap?: () => void;
+  onVideoEnd?: () => void;
 }
 
 const IMG   = "/assets/reference/envelope.png";
 const VIDEO = "/assets/reference/hero-video.mp4";
 
-type State = "idle" | "playing" | "done";
+type State = "idle" | "playing" | "ended" | "done";
 
-export default function EnvelopeIntro({ onOpen, onTap }: Props) {
+export default function EnvelopeIntro({ onOpen, onTap, onVideoEnd }: Props) {
   const [state, setState] = useState<State>("idle");
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  function handleScrollDown() {
+    setState("done");
+    setTimeout(() => {
+      onOpen();
+      requestAnimationFrame(() => {
+        document.getElementById("invitation")?.scrollIntoView({ behavior: "smooth" });
+      });
+    }, 60);
+  }
+
   function handleTap() {
-    if (state !== "idle") return;
-    setState("playing");
-    videoRef.current?.play();
-    onTap?.();
+    if (state === "idle") {
+      setState("playing");
+      videoRef.current?.play();
+      onTap?.();
+    } else if (state === "ended") {
+      handleScrollDown();
+    }
   }
 
   function handleEnded() {
-    setState("done");
-    setTimeout(onOpen, 60);
+    videoRef.current?.pause();
+    setState("ended");
+    onVideoEnd?.();
+  }
+
+  function handleScrollGesture() {
+    if (state === "ended") handleScrollDown();
   }
 
   return (
     <motion.div
       onClick={handleTap}
+      onWheel={handleScrollGesture}
+      onTouchMove={handleScrollGesture}
       className="fixed inset-0 z-50 overflow-hidden mx-auto"
-      style={{ height: "100dvh", maxWidth: 430, cursor: state === "idle" ? "pointer" : "default" }}
+      style={{ height: "100dvh", maxWidth: 430, cursor: state === "idle" || state === "ended" ? "pointer" : "default" }}
       animate={state === "done" ? { opacity: 0 } : { opacity: 1 }}
       transition={{ duration: 0.3 }}
     >
@@ -56,7 +77,7 @@ export default function EnvelopeIntro({ onOpen, onTap }: Props) {
         onEnded={handleEnded}
         onError={handleEnded}
         className="absolute inset-0 h-full w-full object-cover"
-        style={{ opacity: state === "playing" ? 1 : 0 }}
+        style={{ opacity: state === "playing" || state === "ended" ? 1 : 0 }}
       />
 
       {/* TAP TO OPEN */}
@@ -73,12 +94,32 @@ export default function EnvelopeIntro({ onOpen, onTap }: Props) {
             fontSize: "0.65rem",
             letterSpacing: "0.28em",
             textTransform: "uppercase",
-            color: "#8a7a5a",
+            color: "#1f1710",
           }}
         >
           Tap to open
         </motion.p>
-        <div style={{ width: 24, height: 1, background: "#8a7a5a", opacity: 0.5 }} />
+      </motion.div>
+
+      {/* SCROLL DOWN — shown on the final frame of the intro video */}
+      <motion.div
+        className="absolute bottom-10 left-0 right-0 flex flex-col items-center gap-2 z-30 pointer-events-none"
+        animate={{ opacity: state === "ended" ? 1 : 0 }}
+        transition={{ duration: 0.2 }}
+      >
+        <motion.p
+          animate={{ y: [0, -5, 0] }}
+          transition={{ repeat: Infinity, duration: 2.4, ease: "easeInOut" }}
+          style={{
+            fontFamily: "var(--font-cormorant)",
+            fontSize: "0.65rem",
+            letterSpacing: "0.28em",
+            textTransform: "uppercase",
+            color: "#ffffff",
+          }}
+        >
+          Scroll down
+        </motion.p>
       </motion.div>
     </motion.div>
   );

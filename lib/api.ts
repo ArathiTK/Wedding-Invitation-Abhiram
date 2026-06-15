@@ -1,6 +1,6 @@
 export interface RSVPData {
   name: string;
-  attendance: "ceremony" | "reception" | "both";
+  attendance: "ceremony" | "reception" | "both" | "decline";
 }
 
 export async function submitRSVP(data: RSVPData): Promise<{ success: boolean; message: string }> {

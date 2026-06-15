@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+﻿import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 
@@ -10,11 +10,18 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://wedding-invitation-abhiram.vercel.app"),
   title: "Abhiram TK & Athira K — Wedding Invitation",
   description:
-    "You are cordially invited to the wedding of Abhiram TK & Athira K. Ceremony on 06 November 2026 at Nova Auditorium Palazhi, Kozhikode. Reception on 07 November 2026 at Sreevalksam Auditorium, Payyanur.",
+    "You are cordially invited to the wedding of Abhiram TK & Athira K. Ceremony on 06 November 2026 at Nova Auditorium Palazhi, Kozhikode. Reception on 08 November 2026 at Sreevalsam Auditorium Payyanur.",
   openGraph: {
     title: "Abhiram TK & Athira K — Wedding Invitation",
     description: "Join us to celebrate the wedding of Abhiram TK & Athira K, November 2026.",

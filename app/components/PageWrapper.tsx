@@ -10,6 +10,7 @@ const FADE_DURATION = 4000;
 
 export default function PageWrapper({ children }: { children: React.ReactNode }) {
   const [opened, setOpened] = useState(false);
+  const [started, setStarted] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   // Start playback silently inside the tap's user-gesture so the browser allows it.
@@ -20,9 +21,10 @@ export default function PageWrapper({ children }: { children: React.ReactNode })
     audio.play().catch(() => {});
   }
 
-  // Once the envelope is open, fade the (already-playing) track in smoothly.
+  // Once the intro video's last frame is showing, fade the (already-playing) track
+  // in smoothly and start the falling flowers — no need to wait for a scroll.
   useEffect(() => {
-    if (!opened) return;
+    if (!started) return;
     const audio = audioRef.current;
     if (!audio) return;
 
@@ -31,18 +33,31 @@ export default function PageWrapper({ children }: { children: React.ReactNode })
     let frame: number;
 
     function fade(now: number) {
-      const progress = Math.min((now - start) / FADE_DURATION, 1);
+      const progress = Math.max(0, Math.min((now - start) / FADE_DURATION, 1));
       audio!.volume = progress * TARGET_VOLUME;
       if (progress < 1) frame = requestAnimationFrame(fade);
     }
     frame = requestAnimationFrame(fade);
 
     return () => cancelAnimationFrame(frame);
+  }, [started]);
+
+  // Lock scrolling (and keep the page pinned to the top) until the envelope is opened.
+  useEffect(() => {
+    if (opened) {
+      document.body.style.overflow = "";
+      return;
+    }
+    window.scrollTo(0, 0);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [opened]);
 
   // Pause when the tab is hidden/minimized, resume when it's visible again.
   useEffect(() => {
-    if (!opened) return;
+    if (!started) return;
     function handleVisibility() {
       const audio = audioRef.current;
       if (!audio) return;
@@ -51,16 +66,18 @@ export default function PageWrapper({ children }: { children: React.ReactNode })
     }
     document.addEventListener("visibilitychange", handleVisibility);
     return () => document.removeEventListener("visibilitychange", handleVisibility);
-  }, [opened]);
+  }, [started]);
 
   return (
     // relative so the absolute-positioned envelope is contained within the mobile column
     <div className="relative">
       <audio ref={audioRef} src={TRACK} loop preload="auto" aria-hidden="true" />
       <AnimatePresence>
-        {!opened && <EnvelopeIntro onOpen={() => setOpened(true)} onTap={handleTap} />}
+        {!opened && (
+          <EnvelopeIntro onOpen={() => setOpened(true)} onTap={handleTap} onVideoEnd={() => setStarted(true)} />
+        )}
       </AnimatePresence>
-      {opened && <FallingFlowers />}
+      {started && <FallingFlowers />}
       {children}
     </div>
   );
