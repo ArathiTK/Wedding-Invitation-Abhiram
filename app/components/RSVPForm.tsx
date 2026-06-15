@@ -44,22 +44,22 @@ export default function RSVPForm() {
   }
 
   return (
-    <section id="rsvp" className="h-[100dvh] flex flex-col justify-center overflow-y-auto py-10 px-6 bg-paper-2">
+    <section id="rsvp" className="h-[100dvh] flex flex-col justify-center overflow-y-auto py-[clamp(1.5rem,5vh,2.5rem)] px-6 bg-paper-2">
       <div className="max-w-xl mx-auto">
         <AnimateOnScroll>
-          <p className="heading-display text-xs text-[#c9a876] text-center mb-2">RSVP</p>
-          <h2 className="heading-gold heading-display text-center mb-2"
+          <p className="heading-display text-xs text-[#c9a876] text-center mb-[clamp(0.5rem,2vh,0.75rem)]">RSVP</p>
+          <h2 className="heading-gold heading-display text-center mb-[clamp(0.5rem,2vh,0.75rem)]"
             style={{ fontSize: "clamp(1.25rem, 5vw, 1.75rem)", letterSpacing: "0.1em" }}>
             Will You Join Us?
           </h2>
-          <p className="text-center text-[#f0e6da]/60 text-sm mb-6">
+          <p className="text-center text-[#f0e6da]/60 text-sm mb-[clamp(1rem,4vh,1.5rem)]">
             Please let us know by <strong className="text-[#f0e6da]/80">October 15, 2026</strong>
           </p>
         </AnimateOnScroll>
 
         <AnimateOnScroll delay={0.15}>
           <div className="gold-border-card rounded-lg p-6 md:p-8" style={{ backgroundColor: "#332c26" }}>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-[clamp(0.75rem,3vh,1rem)]" noValidate>
               <div>
                 <label className={labelClass}>Full Name *</label>
                 <input type="text" placeholder="Your name" className={inputClass}
@@ -93,7 +93,7 @@ export default function RSVPForm() {
               </div>
             </form>
 
-            <div className="mt-6 pt-6 border-t border-[#c9a876]/20 text-center">
+            <div className="mt-[clamp(1rem,4vh,1.5rem)] pt-[clamp(1rem,4vh,1.5rem)] border-t border-[#c9a876]/20 text-center">
               <p className="text-xs text-[#f0e6da]/40 mb-3">Prefer to message directly?</p>
               <a href={`https://wa.me/${WEDDING.footer.whatsapp}?text=${whatsappMsg}`}
                 target="_blank" rel="noopener noreferrer"

@@ -5,10 +5,10 @@ import CountdownTimer from "./ui/CountdownTimer";
 
 export default function InvitationMessage() {
   return (
-    <section id="invitation" className="min-h-[100dvh] flex flex-col justify-center py-20 px-6 bg-paper-1">
+    <section id="invitation" className="min-h-[100dvh] flex flex-col justify-center py-[clamp(2rem,8vh,5rem)] px-6 bg-paper-1">
       <div className="max-w-2xl mx-auto text-center">
         <AnimateOnScroll>
-          <div className="flex justify-center mb-4">
+          <div className="flex justify-center mb-[clamp(0.75rem,3vh,1.25rem)]">
             <div style={{
               width: 40,
               height: 61,
@@ -27,7 +27,7 @@ export default function InvitationMessage() {
         </AnimateOnScroll>
 
         <AnimateOnScroll>
-          <p className="heading-display text-xs text-[#c9a876] mb-2">Invitation</p>
+          <p className="heading-display text-xs text-[#c9a876] mb-[clamp(0.5rem,2vh,0.75rem)]">Invitation</p>
         </AnimateOnScroll>
 
         <AnimateOnScroll delay={0.1}>
@@ -39,14 +39,14 @@ export default function InvitationMessage() {
           </p>
         </AnimateOnScroll>
 
-        <GoldDivider className="my-6" />
+        <GoldDivider className="my-[clamp(1rem,4vh,1.5rem)]" />
 
         <AnimateOnScroll delay={0.4}>
           <h2 className="heading-gold heading-display leading-tight mt-4"
             style={{ fontSize: "clamp(1.25rem, 5vw, 1.75rem)", letterSpacing: "0.1em" }}>
             Athira K
           </h2>
-          <div className="mx-auto my-3" style={{
+          <div className="mx-auto my-[clamp(0.5rem,2.5vh,0.75rem)]" style={{
             width: 140,
             height: 79,
             backgroundColor: "#c9a876",
@@ -65,10 +65,10 @@ export default function InvitationMessage() {
           </h2>
         </AnimateOnScroll>
 
-        <GoldDivider className="mt-8" />
+        <GoldDivider className="mt-[clamp(1.5rem,5vh,2rem)]" />
 
         <AnimateOnScroll delay={0.5}>
-          <div className="mt-8">
+          <div className="mt-[clamp(1.5rem,5vh,2rem)]">
             <CountdownTimer />
           </div>
         </AnimateOnScroll>

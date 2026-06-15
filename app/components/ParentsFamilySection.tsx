@@ -1,20 +1,19 @@
 ﻿"use client";
 import AnimateOnScroll from "./ui/AnimateOnScroll";
-import GoldDivider from "./ui/GoldDivider";
 
 export default function ParentsFamilySection() {
   return (
-    <section id="family" className="min-h-[100dvh] flex flex-col justify-center py-10 px-6 bg-paper-1">
+    <section id="family" className="min-h-[100dvh] flex flex-col justify-center py-[clamp(2rem,8vh,3rem)] px-6 bg-paper-1">
       <div className="max-w-3xl mx-auto text-center">
         <AnimateOnScroll>
-          <p className="heading-display text-xs text-[#c9a876] mb-2">Families</p>
-          <h2 className="heading-gold heading-display mb-5"
+          <p className="heading-display text-xs text-[#c9a876] mb-[clamp(0.5rem,2vh,0.75rem)]">Families</p>
+          <h2 className="heading-gold heading-display mb-[clamp(1rem,4vh,1.5rem)]"
             style={{ fontSize: "clamp(1.25rem, 5vw, 1.75rem)", letterSpacing: "0.1em" }}>
             With the Grace of Our Families
           </h2>
         </AnimateOnScroll>
 
-        <div className="grid grid-cols-1 gap-4">
+        <div className="grid grid-cols-1 gap-[clamp(1rem,5vh,2.5rem)]">
           <AnimateOnScroll delay={0.1} direction="left">
             <div className="gold-border-card rounded-lg p-5 md:p-6 h-full" style={{ backgroundColor: "#332c26" }}>
               <p className="heading-display text-xs text-[#c9a876] mb-2">Groom&apos;s Family</p>
@@ -35,8 +34,6 @@ export default function ParentsFamilySection() {
             </div>
           </AnimateOnScroll>
         </div>
-
-        <GoldDivider className="mt-6" />
       </div>
     </section>
   );

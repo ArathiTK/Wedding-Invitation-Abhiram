@@ -60,22 +60,22 @@ export default function EventsSection() {
   ];
 
   return (
-    <section id="events" className="h-[100dvh] flex flex-col justify-center overflow-y-auto py-8 px-6 bg-paper-2">
+    <section id="events" className="h-[100dvh] flex flex-col justify-center overflow-y-auto py-[clamp(1.5rem,5vh,2.5rem)] px-6 bg-paper-2">
       <div className="max-w-xl mx-auto w-full">
         <AnimateOnScroll>
-          <p className="heading-display text-xs text-[#c9a876] text-center mb-4">Events</p>
+          <p className="heading-display text-xs text-[#c9a876] text-center mb-[clamp(0.75rem,3vh,1.25rem)]">Events</p>
         </AnimateOnScroll>
 
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-[clamp(0.75rem,3vh,1.5rem)]">
           {events.map(({ name, graphic, date, time, venue, address, cardBg, googleMapsUrl }, i) => (
             <AnimateOnScroll key={name} delay={0.1 + i * 0.1}>
               <div className="gold-border-card rounded-lg p-5" style={{ backgroundColor: cardBg }}>
-                <div className="flex justify-center mb-2">{graphic}</div>
-                <h3 className="heading-gold heading-display text-center mb-3"
+                <div className="flex justify-center mb-[clamp(0.4rem,1.5vh,0.75rem)]">{graphic}</div>
+                <h3 className="heading-gold heading-display text-center mb-[clamp(0.5rem,2vh,1rem)]"
                   style={{ fontSize: "clamp(1.1rem, 4.5vw, 1.5rem)", letterSpacing: "0.1em" }}>
                   {name}
                 </h3>
-                <div className="space-y-2.5">
+                <div className="space-y-[clamp(0.5rem,2vh,0.85rem)]">
                   {[
                     {
                       label: "Date", value: date,

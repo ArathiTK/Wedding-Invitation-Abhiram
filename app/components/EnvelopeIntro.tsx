@@ -53,7 +53,7 @@ export default function EnvelopeIntro({ onOpen, onTap, onVideoEnd }: Props) {
       onWheel={handleScrollGesture}
       onTouchMove={handleScrollGesture}
       className="fixed inset-0 z-50 overflow-hidden mx-auto w-full md:max-w-[430px]"
-      style={{ height: "100dvh", cursor: state === "idle" || state === "ended" ? "pointer" : "default" }}
+      style={{ height: "100dvh", backgroundColor: "#221c18", cursor: state === "idle" || state === "ended" ? "pointer" : "default" }}
       animate={state === "done" ? { opacity: 0 } : { opacity: 1 }}
       transition={{ duration: 0.3 }}
     >
