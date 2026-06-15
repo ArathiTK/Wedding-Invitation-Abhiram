@@ -32,12 +32,25 @@ export default function PageWrapper({ children }: { children: React.ReactNode })
 
     function fade(now: number) {
       const progress = Math.min((now - start) / FADE_DURATION, 1);
-      audio.volume = progress * TARGET_VOLUME;
+      audio!.volume = progress * TARGET_VOLUME;
       if (progress < 1) frame = requestAnimationFrame(fade);
     }
     frame = requestAnimationFrame(fade);
 
     return () => cancelAnimationFrame(frame);
+  }, [opened]);
+
+  // Pause when the tab is hidden/minimized, resume when it's visible again.
+  useEffect(() => {
+    if (!opened) return;
+    function handleVisibility() {
+      const audio = audioRef.current;
+      if (!audio) return;
+      if (document.hidden) audio.pause();
+      else audio.play().catch(() => {});
+    }
+    document.addEventListener("visibilitychange", handleVisibility);
+    return () => document.removeEventListener("visibilitychange", handleVisibility);
   }, [opened]);
 
   return (
