@@ -38,8 +38,8 @@ function Jasmine({ size }: { size: number }) {
 export default function FallingFlowers() {
   return (
     <div
-      className="fixed inset-0 mx-auto overflow-hidden pointer-events-none z-[60]"
-      style={{ maxWidth: 430, height: "100dvh" }}
+      className="fixed inset-0 mx-auto overflow-hidden pointer-events-none z-[60] w-full md:max-w-[430px]"
+      style={{ height: "100dvh" }}
       aria-hidden="true"
     >
       {FLOWERS.map((f) => (
