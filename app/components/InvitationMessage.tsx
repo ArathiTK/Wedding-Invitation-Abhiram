@@ -44,8 +44,11 @@ export default function InvitationMessage() {
         <AnimateOnScroll delay={0.4}>
           <h2 className="heading-gold heading-display leading-tight mt-4"
             style={{ fontSize: "clamp(1.25rem, 5vw, 1.75rem)", letterSpacing: "0.1em" }}>
-            Athira K
+            Abhiram TK
           </h2>
+          <p className="text-xs text-[#c9a876]/35 mt-1" style={{ fontFamily: "var(--font-seasons)" }}>
+            s/o Mrs. Sheela M &amp; Mr. Thulasidas TK
+          </p>
           <div className="mx-auto my-[clamp(0.5rem,2.5vh,0.75rem)]" style={{
             width: 140,
             height: 79,
@@ -61,8 +64,11 @@ export default function InvitationMessage() {
           }} />
           <h2 className="heading-gold heading-display leading-tight"
             style={{ fontSize: "clamp(1.25rem, 5vw, 1.75rem)", letterSpacing: "0.1em" }}>
-            Abhiram TK
+            Athira K
           </h2>
+          <p className="text-xs text-[#c9a876]/35 mt-1" style={{ fontFamily: "var(--font-seasons)" }}>
+            d/o Mrs. Sindhu P &amp; Mr. Anil Kumar K
+          </p>
         </AnimateOnScroll>
 
         <GoldDivider className="mt-[clamp(1.5rem,5vh,2rem)]" />

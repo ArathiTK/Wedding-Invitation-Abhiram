@@ -1,9 +1,9 @@
 ﻿"use client";
 import { motion } from "framer-motion";
 
-const FLOWERS = Array.from({ length: 12 }, (_, i) => {
+const FLOWERS = Array.from({ length: 9 }, (_, i) => {
   const left = Math.round((i * 137.5) % 100);
-  const size = 12 + (i % 4) * 4;
+  const size = 12 + (i % 3) * 4;
   const duration = 10 + (i % 5) * 2.5;
   const delay = (i * 1.7) % duration;
   const sway = 18 + (i % 3) * 12;

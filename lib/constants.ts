@@ -26,8 +26,8 @@ export const WEDDING = {
     googleMapsUrl: "https://maps.google.com/?q=Nova+Auditorium+Palazhi+Kozhikode",
   },
   reception: {
-    date: "Sunday, 08 November 2026",
-    isoDate: "2026-11-08",
+    date: "Saturday, 07 November 2026",
+    isoDate: "2026-11-07",
     time: "12:00 PM – 2:30 PM",
     startTime: "120000",
     endTime: "143000",
