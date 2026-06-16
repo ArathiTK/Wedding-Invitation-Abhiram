@@ -1,11 +1,10 @@
 ﻿"use client";
 import AnimateOnScroll from "./ui/AnimateOnScroll";
 import GoldDivider from "./ui/GoldDivider";
-import CountdownTimer from "./ui/CountdownTimer";
 
 export default function InvitationMessage() {
   return (
-    <section id="invitation" className="min-h-[100dvh] flex flex-col justify-center py-[clamp(2rem,8vh,5rem)] px-6 bg-paper-1">
+    <section id="invitation" className="h-[100dvh] flex flex-col justify-center overflow-y-auto py-[clamp(2rem,8vh,5rem)] px-6 bg-paper-1">
       <div className="max-w-2xl mx-auto text-center">
         <AnimateOnScroll>
           <div className="flex justify-center mb-[clamp(0.75rem,3vh,1.25rem)]">
@@ -49,9 +48,9 @@ export default function InvitationMessage() {
           <p className="text-xs text-[#c9a876]/35 mt-1" style={{ fontFamily: "var(--font-seasons)" }}>
             s/o Mrs. Sheela M &amp; Mr. Thulasidas TK
           </p>
-          <div className="mx-auto my-[clamp(0.5rem,2.5vh,0.75rem)]" style={{
-            width: 140,
-            height: 79,
+          <div className="mx-auto my-1" style={{
+            width: 110,
+            height: 62,
             backgroundColor: "#c9a876",
             WebkitMaskImage: "url('/assets/ornaments/and.png')",
             maskImage: "url('/assets/ornaments/and.png')",
@@ -71,13 +70,6 @@ export default function InvitationMessage() {
           </p>
         </AnimateOnScroll>
 
-        <GoldDivider className="mt-[clamp(1.5rem,5vh,2rem)]" />
-
-        <AnimateOnScroll delay={0.5}>
-          <div className="mt-[clamp(1.5rem,5vh,2rem)]">
-            <CountdownTimer />
-          </div>
-        </AnimateOnScroll>
       </div>
     </section>
   );

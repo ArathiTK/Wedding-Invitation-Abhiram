@@ -60,7 +60,7 @@ export default function EventsSection() {
   ];
 
   return (
-    <section id="events" className="h-[100dvh] flex flex-col justify-center overflow-y-auto py-[clamp(1.5rem,5vh,2.5rem)] px-6 bg-paper-2">
+    <section id="events" className="h-[100dvh] flex flex-col justify-center overflow-y-auto py-[clamp(1.5rem,5vh,2.5rem)] px-6 bg-paper-1">
       <div className="max-w-xl mx-auto w-full">
         <AnimateOnScroll>
           <p className="heading-display text-xs text-[#c9a876] text-center mb-[clamp(0.75rem,3vh,1.25rem)]">Events</p>
