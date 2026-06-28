@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import EnvelopeIntro from "./EnvelopeIntro";
 import FallingFlowers from "./FallingFlowers";
+import { IntroContext } from "@/app/context/IntroContext";
 
 const TRACK = "/assets/audio/bgm-bansuri-tarana.mp3";
 const TARGET_VOLUME = 0.35;
@@ -70,6 +71,7 @@ export default function PageWrapper({ children }: { children: React.ReactNode })
 
   return (
     // relative so the absolute-positioned envelope is contained within the mobile column
+    <IntroContext.Provider value={{ opened }}>
     <div className="relative">
       <audio ref={audioRef} src={TRACK} loop preload="auto" aria-hidden="true" />
       <AnimatePresence>
@@ -80,5 +82,6 @@ export default function PageWrapper({ children }: { children: React.ReactNode })
       {started && <FallingFlowers />}
       {children}
     </div>
+    </IntroContext.Provider>
   );
 }

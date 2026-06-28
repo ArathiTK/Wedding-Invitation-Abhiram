@@ -85,6 +85,7 @@ export default function EnvelopeIntro({ onOpen, onTap, onVideoEnd }: Props) {
       {/* TAP TO OPEN */}
       <motion.div
         className="absolute bottom-10 left-0 right-0 flex flex-col items-center gap-2 z-30 pointer-events-none"
+        initial={{ opacity: 0 }}
         animate={{ opacity: state === "idle" ? 1 : 0 }}
         transition={{ duration: 0.2 }}
       >
@@ -105,7 +106,8 @@ export default function EnvelopeIntro({ onOpen, onTap, onVideoEnd }: Props) {
 
       {/* SCROLL DOWN + COUNTDOWN — shown on the final frame of the intro video */}
       <motion.div
-        className="absolute bottom-10 left-0 right-0 flex flex-col items-center gap-4 z-30 pointer-events-none"
+        className="absolute bottom-4 left-0 right-0 flex flex-col items-center gap-4 z-30 pointer-events-none"
+        initial={{ opacity: 0 }}
         animate={{ opacity: state === "ended" ? 1 : 0 }}
         transition={{ duration: 0.2 }}
       >
@@ -118,7 +120,7 @@ export default function EnvelopeIntro({ onOpen, onTap, onVideoEnd }: Props) {
             fontSize: "0.65rem",
             letterSpacing: "0.28em",
             textTransform: "uppercase",
-            color: "#ffffff",
+            color: "#000000",
           }}
         >
           Scroll down
