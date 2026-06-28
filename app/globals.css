@@ -69,6 +69,44 @@ body {
   font-family: var(--font-cormorant), serif;
 }
 
+.card-flip-y {
+  position: relative;
+}
+.card-flip-y::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--flip-bg);
+  background-size: cover;
+  background-position: center;
+  transform: scaleY(-1);
+  z-index: 0;
+  border-radius: inherit;
+}
+.card-flip-y > * {
+  position: relative;
+  z-index: 1;
+}
+
+.bg-flip-y {
+  position: relative;
+  overflow: hidden;
+}
+.bg-flip-y::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--flip-bg);
+  background-size: cover;
+  background-position: center;
+  transform: scaleY(-1);
+  z-index: 0;
+}
+.bg-flip-y > * {
+  position: relative;
+  z-index: 1;
+}
+
 .gold-border-card {
   border: none !important;
   overflow: hidden;

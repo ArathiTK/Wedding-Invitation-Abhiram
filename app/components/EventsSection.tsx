@@ -20,6 +20,7 @@ export default function EventsSection() {
       venue: WEDDING.ceremony.venue,
       address: WEDDING.ceremony.address,
       cardBg: "url('/assets/bg.png')",
+      cardBgPosition: "center",
       googleMapsUrl: WEDDING.ceremony.googleMapsUrl,
       calUrl: makeGoogleCalendarUrl({
         title: "Abhiram TK & Athira K — Wedding Ceremony",
@@ -47,6 +48,7 @@ export default function EventsSection() {
       venue: WEDDING.reception.venue,
       address: WEDDING.reception.address,
       cardBg: "url('/assets/bg.png')",
+      cardBgPosition: "center bottom",
       googleMapsUrl: WEDDING.reception.googleMapsUrl,
       calUrl: makeGoogleCalendarUrl({
         title: "Abhiram TK & Athira K — Wedding Reception",
@@ -67,9 +69,9 @@ export default function EventsSection() {
         </AnimateOnScroll>
 
         <div className="flex flex-col gap-[clamp(0.75rem,3vh,1.5rem)]">
-          {events.map(({ name, graphic, date, time, venue, address, cardBg, googleMapsUrl }, i) => (
+          {events.map(({ name, graphic, date, time, venue, address, cardBg, cardBgPosition, googleMapsUrl }, i) => (
             <AnimateOnScroll key={name} delay={0.1 + i * 0.1}>
-              <div className="gold-border-card rounded-lg p-5" style={{ backgroundImage: cardBg, backgroundSize: "cover", backgroundPosition: "center" }}>
+              <div className="gold-border-card rounded-lg p-5" style={{ backgroundImage: cardBg, backgroundSize: "cover", backgroundPosition: cardBgPosition }}>
                 <div className="flex justify-center mb-[clamp(0.4rem,1.5vh,0.75rem)]">{graphic}</div>
                 <h3 className="heading-gold heading-display text-center mb-[clamp(0.5rem,2vh,1rem)]"
                   style={{ fontSize: "clamp(1.1rem, 4.5vw, 1.5rem)", letterSpacing: "0.1em" }}>
