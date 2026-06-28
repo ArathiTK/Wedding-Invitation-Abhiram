@@ -19,7 +19,7 @@ export default function EventsSection() {
       time: WEDDING.ceremony.time,
       venue: WEDDING.ceremony.venue,
       address: WEDDING.ceremony.address,
-      cardBg: "url('/assets/bg dark.png')",
+      cardBg: "url('/assets/bg.png')",
       googleMapsUrl: WEDDING.ceremony.googleMapsUrl,
       calUrl: makeGoogleCalendarUrl({
         title: "Abhiram TK & Athira K — Wedding Ceremony",
@@ -46,7 +46,7 @@ export default function EventsSection() {
       time: WEDDING.reception.time,
       venue: WEDDING.reception.venue,
       address: WEDDING.reception.address,
-      cardBg: "url('/assets/bg dark.png')",
+      cardBg: "url('/assets/bg.png')",
       googleMapsUrl: WEDDING.reception.googleMapsUrl,
       calUrl: makeGoogleCalendarUrl({
         title: "Abhiram TK & Athira K — Wedding Reception",
@@ -60,7 +60,7 @@ export default function EventsSection() {
   ];
 
   return (
-    <section id="events" className="h-[100dvh] flex flex-col justify-center overflow-y-auto py-[clamp(1.5rem,5vh,2.5rem)] px-6" style={{ backgroundImage: "url('/assets/bg light.png')", backgroundSize: "cover", backgroundPosition: "center" }}>
+    <section id="events" className="h-[100dvh] flex flex-col justify-center overflow-y-auto py-[clamp(1.5rem,5vh,2.5rem)] px-6" style={{ backgroundImage: "url('/assets/bg.png')", backgroundSize: "cover", backgroundPosition: "center" }}>
       <div className="max-w-xl mx-auto w-full">
         <AnimateOnScroll>
           <p className="heading-display text-xs text-[#c9a876] text-center mb-[clamp(0.75rem,3vh,1.25rem)]">Events</p>
