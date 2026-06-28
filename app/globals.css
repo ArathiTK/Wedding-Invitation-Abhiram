@@ -72,6 +72,7 @@ body {
 .gold-border-card {
   border: none !important;
   overflow: hidden;
+  border-radius: 1.5rem;
   box-shadow:
     0 2px 4px rgba(0, 0, 0, 0.15),
     0 8px 24px rgba(0, 0, 0, 0.35),
