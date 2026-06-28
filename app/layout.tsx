@@ -38,11 +38,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${cormorant.variable} h-full`}>
-      <body className="min-h-full antialiased" style={{ backgroundColor: "#3a322c" }}>
+      <body className="min-h-full antialiased" style={{ backgroundColor: "#1f2519" }}>
         {/* Mobile-width container — centred on desktop, full-width on mobile */}
         <div
           className="relative mx-auto overflow-x-hidden w-full md:max-w-[430px]"
-          style={{ minHeight: "100dvh", backgroundColor: "#3a322c" }}
+          style={{ minHeight: "100dvh", backgroundColor: "#1f2519" }}
         >
           {children}
         </div>

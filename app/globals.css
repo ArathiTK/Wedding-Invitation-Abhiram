@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+* {
+  scrollbar-width: none;
+}
+*::-webkit-scrollbar {
+  display: none;
+}
+
 /* ── The Seasons — self-hosted ── */
 @font-face {
   font-family: 'The Seasons';
@@ -78,7 +85,7 @@ body {
   inset: 0;
   background-image: var(--flip-bg);
   background-size: cover;
-  background-position: center;
+  background-position: var(--flip-bg-pos, center);
   transform: scaleY(-1);
   z-index: 0;
   border-radius: inherit;
@@ -88,9 +95,82 @@ body {
   z-index: 1;
 }
 
+.bg-flip-both {
+  position: relative;
+}
+.bg-flip-both::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--flip-bg);
+  background-size: cover;
+  background-position: center;
+  transform: scale(-1, -1);
+  z-index: 0;
+}
+.bg-flip-both > * {
+  position: relative;
+  z-index: 1;
+}
+
+.card-flip-both {
+  position: relative;
+}
+.card-flip-both::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--flip-bg);
+  background-size: cover;
+  background-position: center;
+  transform: scale(-1, -1);
+  z-index: 0;
+  border-radius: inherit;
+}
+.card-flip-both > * {
+  position: relative;
+  z-index: 1;
+}
+
+.bg-flop-x {
+  position: relative;
+}
+.bg-flop-x::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--flip-bg);
+  background-size: cover;
+  background-position: center;
+  transform: scaleX(-1);
+  z-index: 0;
+}
+.bg-flop-x > * {
+  position: relative;
+  z-index: 1;
+}
+
+.card-flop-x {
+  position: relative;
+}
+.card-flop-x::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--flip-bg);
+  background-size: cover;
+  background-position: center;
+  transform: scaleX(-1);
+  z-index: 0;
+  border-radius: inherit;
+}
+.card-flop-x > * {
+  position: relative;
+  z-index: 1;
+}
+
 .bg-flip-y {
   position: relative;
-  overflow: hidden;
 }
 .bg-flip-y::before {
   content: "";
@@ -109,8 +189,10 @@ body {
 
 .gold-border-card {
   border: none !important;
-  overflow: hidden;
   border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.07) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   box-shadow:
     0 2px 4px rgba(0, 0, 0, 0.15),
     0 8px 24px rgba(0, 0, 0, 0.35),

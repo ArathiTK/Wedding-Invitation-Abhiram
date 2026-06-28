@@ -15,7 +15,7 @@ export default function ParentsFamilySection() {
 
         <div className="grid grid-cols-1 gap-[clamp(1rem,5vh,2.5rem)]">
           <AnimateOnScroll delay={0.1} direction="left">
-            <div className="gold-border-card rounded-lg p-5 md:p-6 h-full" style={{ backgroundColor: "#332c26" }}>
+            <div className="gold-border-card rounded-lg p-5 md:p-6 h-full" style={{ backgroundColor: "#181e13" }}>
               <p className="heading-display text-xs text-[#c9a876] mb-2">Groom&apos;s Family</p>
               <h3 className="text-2xl heading-gold heading-script mb-1">Abhiram TK</h3>
               <p className="text-sm italic text-[#f0e6da]/60 mb-3" style={{ fontFamily: "var(--font-seasons)" }}>Son of</p>
@@ -25,7 +25,7 @@ export default function ParentsFamilySection() {
           </AnimateOnScroll>
 
           <AnimateOnScroll delay={0.2} direction="right">
-            <div className="gold-border-card rounded-lg p-5 md:p-6 h-full" style={{ backgroundColor: "#332c26" }}>
+            <div className="gold-border-card rounded-lg p-5 md:p-6 h-full" style={{ backgroundColor: "#181e13" }}>
               <p className="heading-display text-xs text-[#c9a876] mb-2">Bride&apos;s Family</p>
               <h3 className="text-2xl heading-gold heading-script mb-1">Athira K</h3>
               <p className="text-sm italic text-[#f0e6da]/60 mb-3" style={{ fontFamily: "var(--font-seasons)" }}>Daughter of</p>

@@ -1,6 +1,7 @@
 "use client";
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
+import CountdownTimer from "./ui/CountdownTimer";
 
 interface Props {
   onOpen: () => void;
@@ -54,7 +55,7 @@ export default function EnvelopeIntro({ onOpen, onTap, onVideoEnd }: Props) {
       onWheel={handleScrollGesture}
       onTouchMove={handleScrollGesture}
       className="fixed inset-0 z-50 overflow-hidden mx-auto w-full md:max-w-[430px]"
-      style={{ height: "100dvh", backgroundColor: "#221c18", cursor: state === "idle" || state === "ended" ? "pointer" : "default" }}
+      style={{ height: "100dvh", backgroundColor: "#181e13", cursor: state === "idle" || state === "ended" ? "pointer" : "default" }}
       animate={state === "done" ? { opacity: 0 } : { opacity: 1 }}
       transition={{ duration: 0.3 }}
     >
@@ -102,12 +103,13 @@ export default function EnvelopeIntro({ onOpen, onTap, onVideoEnd }: Props) {
         </motion.p>
       </motion.div>
 
-      {/* SCROLL DOWN — shown on the final frame of the intro video */}
+      {/* SCROLL DOWN + COUNTDOWN — shown on the final frame of the intro video */}
       <motion.div
-        className="absolute bottom-10 left-0 right-0 flex flex-col items-center gap-2 z-30 pointer-events-none"
+        className="absolute bottom-10 left-0 right-0 flex flex-col items-center gap-4 z-30 pointer-events-none"
         animate={{ opacity: state === "ended" ? 1 : 0 }}
         transition={{ duration: 0.2 }}
       >
+        <CountdownTimer />
         <motion.p
           animate={{ y: [0, -5, 0] }}
           transition={{ repeat: Infinity, duration: 2.4, ease: "easeInOut" }}
