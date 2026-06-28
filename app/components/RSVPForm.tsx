@@ -5,7 +5,7 @@ import AnimateOnScroll from "./ui/AnimateOnScroll";
 import { submitRSVP, type RSVPData } from "@/lib/api";
 import { WEDDING } from "@/lib/constants";
 
-const inputClass = "w-full px-4 py-3 bg-[#3a322c] border border-[#c9a876]/30 rounded text-[#f0e6da] text-sm placeholder:text-[#f0e6da]/30 focus:outline-none focus:border-[#c9a876] transition-colors";
+const inputClass = "w-full px-4 py-3 bg-[#1f2519] border border-[#c9a876]/30 rounded text-[#f0e6da] text-sm placeholder:text-[#f0e6da]/30 focus:outline-none focus:border-[#c9a876] transition-colors";
 const labelClass = "block heading-display text-xs text-[#c9a876] mb-2";
 
 export default function RSVPForm() {
@@ -25,9 +25,9 @@ export default function RSVPForm() {
 
   if (submitted) {
     return (
-      <section id="rsvp" className="h-[100dvh] flex flex-col justify-center overflow-y-auto py-10 px-6 bg-paper-2">
+      <section id="rsvp" className="h-[100dvh] flex flex-col justify-center overflow-y-auto py-10 px-6" style={{ backgroundImage: "url('/assets/bg dark.png')", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="max-w-3xl mx-auto w-full text-center">
-          <div className="gold-border-card rounded-lg p-12" style={{ backgroundColor: "#332c26" }}>
+          <div className="gold-border-card rounded-lg p-12" style={{ backgroundImage: "url('/assets/bg light.png')", backgroundSize: "cover", backgroundPosition: "center" }}>
             <div className="flex justify-center mb-6">
               <div className="w-14 h-14 rounded-full border-2 border-[#c9a876] flex items-center justify-center">
                 <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -44,7 +44,7 @@ export default function RSVPForm() {
   }
 
   return (
-    <section id="rsvp" className="h-[100dvh] flex flex-col justify-center overflow-y-auto py-[clamp(1.5rem,5vh,2.5rem)] px-6 bg-paper-2">
+    <section id="rsvp" className="h-[100dvh] flex flex-col justify-center overflow-y-auto py-[clamp(1.5rem,5vh,2.5rem)] px-6" style={{ backgroundImage: "url('/assets/bg dark.png')", backgroundSize: "cover", backgroundPosition: "center" }}>
       <div className="max-w-3xl mx-auto w-full">
         <AnimateOnScroll>
           <p className="heading-display text-xs text-[#c9a876] text-center mb-[clamp(0.5rem,2vh,0.75rem)]">RSVP</p>
@@ -58,7 +58,7 @@ export default function RSVPForm() {
         </AnimateOnScroll>
 
         <AnimateOnScroll delay={0.15}>
-          <div className="gold-border-card rounded-lg p-6 md:p-8 w-full" style={{ backgroundColor: "#332c26" }}>
+          <div className="gold-border-card rounded-lg p-6 md:p-8 w-full" style={{ backgroundImage: "url('/assets/bg light.png')", backgroundSize: "cover", backgroundPosition: "center" }}>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-[clamp(0.75rem,3vh,1rem)]" noValidate>
               <div>
                 <label className={labelClass}>Full Name *</label>

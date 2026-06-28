@@ -19,7 +19,7 @@ export default function EventsSection() {
       time: WEDDING.ceremony.time,
       venue: WEDDING.ceremony.venue,
       address: WEDDING.ceremony.address,
-      cardBg: "#332c26",
+      cardBg: "url('/assets/bg dark.png')",
       googleMapsUrl: WEDDING.ceremony.googleMapsUrl,
       calUrl: makeGoogleCalendarUrl({
         title: "Abhiram TK & Athira K — Wedding Ceremony",
@@ -46,7 +46,7 @@ export default function EventsSection() {
       time: WEDDING.reception.time,
       venue: WEDDING.reception.venue,
       address: WEDDING.reception.address,
-      cardBg: "#3a322c",
+      cardBg: "url('/assets/bg dark.png')",
       googleMapsUrl: WEDDING.reception.googleMapsUrl,
       calUrl: makeGoogleCalendarUrl({
         title: "Abhiram TK & Athira K — Wedding Reception",
@@ -60,7 +60,7 @@ export default function EventsSection() {
   ];
 
   return (
-    <section id="events" className="h-[100dvh] flex flex-col justify-center overflow-y-auto py-[clamp(1.5rem,5vh,2.5rem)] px-6 bg-paper-1">
+    <section id="events" className="h-[100dvh] flex flex-col justify-center overflow-y-auto py-[clamp(1.5rem,5vh,2.5rem)] px-6" style={{ backgroundImage: "url('/assets/bg light.png')", backgroundSize: "cover", backgroundPosition: "center" }}>
       <div className="max-w-xl mx-auto w-full">
         <AnimateOnScroll>
           <p className="heading-display text-xs text-[#c9a876] text-center mb-[clamp(0.75rem,3vh,1.25rem)]">Events</p>
@@ -69,7 +69,7 @@ export default function EventsSection() {
         <div className="flex flex-col gap-[clamp(0.75rem,3vh,1.5rem)]">
           {events.map(({ name, graphic, date, time, venue, address, cardBg, googleMapsUrl }, i) => (
             <AnimateOnScroll key={name} delay={0.1 + i * 0.1}>
-              <div className="gold-border-card rounded-lg p-5" style={{ backgroundColor: cardBg }}>
+              <div className="gold-border-card rounded-lg p-5" style={{ backgroundImage: cardBg, backgroundSize: "cover", backgroundPosition: "center" }}>
                 <div className="flex justify-center mb-[clamp(0.4rem,1.5vh,0.75rem)]">{graphic}</div>
                 <h3 className="heading-gold heading-display text-center mb-[clamp(0.5rem,2vh,1rem)]"
                   style={{ fontSize: "clamp(1.1rem, 4.5vw, 1.5rem)", letterSpacing: "0.1em" }}>

@@ -38,10 +38,10 @@
   --gold: #c9a876;
   --gold-light: #e3c89a;
   --gold-dark: #a9824f;
-  --cream: #2c2521;
-  --cream-mid: #221c18;
+  --cream: #1f2519;
+  --cream-mid: #181e13;
   --espresso: #f0e6da;
-  --footer-deep: #3d2c1c;
+  --footer-deep: #131810;
 }
 
 @theme inline {
@@ -70,8 +70,12 @@ body {
 }
 
 .gold-border-card {
-  border: 1px solid rgba(201, 168, 118, 0.25);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+  border: none !important;
+  overflow: hidden;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.15),
+    0 8px 24px rgba(0, 0, 0, 0.35),
+    0 20px 48px rgba(0, 0, 0, 0.2);
 }
 
 /* Heading text — warm gold-cream, glowing softly on the dark background */

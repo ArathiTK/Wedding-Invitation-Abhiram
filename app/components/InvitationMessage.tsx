@@ -4,7 +4,7 @@ import GoldDivider from "./ui/GoldDivider";
 
 export default function InvitationMessage() {
   return (
-    <section id="invitation" className="h-[100dvh] flex flex-col justify-center overflow-y-auto py-[clamp(2rem,8vh,5rem)] px-6 bg-paper-1">
+    <section id="invitation" className="h-[100dvh] flex flex-col justify-center overflow-y-auto py-[clamp(2rem,8vh,5rem)] px-6" style={{ backgroundImage: "url('/assets/bg light.png')", backgroundSize: "cover", backgroundPosition: "center" }}>
       <div className="max-w-2xl mx-auto text-center">
         <AnimateOnScroll>
           <div className="flex justify-center mb-[clamp(0.75rem,3vh,1.25rem)]">

@@ -4,7 +4,7 @@ import CountdownTimer from "./ui/CountdownTimer";
 
 export default function CountdownTimerSection() {
   return (
-    <section className="flex flex-col justify-center py-[clamp(1.5rem,5vh,2.5rem)] px-6 bg-paper-2">
+    <section className="flex flex-col justify-center py-[clamp(1.5rem,5vh,2.5rem)] px-6" style={{ backgroundImage: "url('/assets/bg dark.png')", backgroundSize: "cover", backgroundPosition: "center" }}>
       <AnimateOnScroll>
         <CountdownTimer />
       </AnimateOnScroll>
