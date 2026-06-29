@@ -4,11 +4,11 @@ import GoldDivider from "./ui/GoldDivider";
 
 export default function InvitationMessage() {
   return (
-    <section id="invitation" className="h-[100dvh] flex flex-col justify-center overflow-y-auto py-[clamp(3rem,18dvh,10rem)] px-6" style={{ backgroundImage: "url('/assets/bg.png')", backgroundSize: "cover", backgroundPosition: "center" }}>
+    <section id="invitation" className="h-[100dvh] flex flex-col justify-center overflow-hidden py-[clamp(3rem,18dvh,10rem)] px-6" style={{ backgroundImage: "url('/assets/bg.png')", backgroundSize: "cover", backgroundPosition: "center" }}>
       <div className="max-w-2xl mx-auto text-center flex flex-col items-center gap-[clamp(0.9rem,4dvh,2.5rem)]">
 
         {/* 1. Ganesh icon */}
-        <AnimateOnScroll>
+        <AnimateOnScroll direction="none">
           <div className="flex justify-center">
             <div style={{
               width: 40, height: 61,
@@ -23,7 +23,7 @@ export default function InvitationMessage() {
         </AnimateOnScroll>
 
         {/* 2. Invitation */}
-        <AnimateOnScroll>
+        <AnimateOnScroll direction="none">
           <p className="heading-display text-xs text-[#c9a876]">Invitation</p>
         </AnimateOnScroll>
 
