@@ -18,12 +18,28 @@ export default function EnvelopeIntro({ onOpen, onTap, onVideoEnd }: Props) {
   const [state, setState] = useState<State>("idle");
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  function smoothScrollTo(target: number, duration: number) {
+    const start = window.scrollY;
+    const distance = target - start;
+    let startTime: number | null = null;
+    function ease(t: number) { return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t; }
+    function step(now: number) {
+      if (!startTime) startTime = now;
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      window.scrollTo(0, start + distance * ease(progress));
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
   function handleScrollDown() {
     setState("done");
     setTimeout(() => {
       onOpen();
       requestAnimationFrame(() => {
-        document.getElementById("our-story")?.scrollIntoView({ behavior: "smooth" });
+        const el = document.getElementById("our-story");
+        if (el) smoothScrollTo(el.getBoundingClientRect().top + window.scrollY, 1800);
       });
     }, 60);
   }
