@@ -22,9 +22,6 @@ export default function EnvelopeIntro({ onOpen, onTap, onVideoEnd }: Props) {
     setState("done");
     setTimeout(() => {
       onOpen();
-      requestAnimationFrame(() => {
-        document.getElementById("our-story")?.scrollIntoView({ behavior: "smooth" });
-      });
     }, 60);
   }
 
