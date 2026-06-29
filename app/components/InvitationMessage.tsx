@@ -4,7 +4,7 @@ import GoldDivider from "./ui/GoldDivider";
 
 export default function InvitationMessage() {
   return (
-    <section id="invitation" className="relative h-[100dvh] flex flex-col justify-center overflow-hidden py-[clamp(3rem,18dvh,10rem)] px-6" style={{ backgroundImage: "url('/assets/bg.png')", backgroundSize: "cover", backgroundPosition: "center", zIndex: 2 }}>
+    <section id="invitation" className="h-[100dvh] flex flex-col justify-center overflow-hidden py-[clamp(3rem,18dvh,10rem)] px-6" style={{ backgroundImage: "url('/assets/bg.png')", backgroundSize: "cover", backgroundPosition: "center" }}>
       <div className="max-w-2xl mx-auto text-center flex flex-col items-center gap-[clamp(0.9rem,4dvh,2.5rem)]">
 
         {/* 1. Ganesh icon */}
