@@ -16,11 +16,11 @@ export default function VideoBgSection() {
       <div className="relative z-10 w-full mx-auto text-center">
         <p className="heading-display text-xs text-[#f0e6da]/90 mb-[clamp(1rem,4vh,2rem)]">Our Story</p>
         <p className="text-[#f0e6da]/90 leading-relaxed mb-[clamp(1.5rem,5vh,3rem)]"
-          style={{ fontFamily: "var(--font-cormorant)", fontSize: "clamp(0.95rem, 3.5vw, 1.15rem)", fontStyle: "italic" }}>
+          style={{ fontFamily: "var(--font-cormorant)", fontSize: "clamp(1.15rem, 4vw, 1.35rem)", fontStyle: "italic" }}>
           Two separate paths, moving at their own pace, quietly led us to each other. Through a million tiny moments of laughter, comfort, and shared dreams, our individual journeys seamlessly became one beautiful love story.
         </p>
         <p className="text-[#f0e6da]/90 leading-relaxed"
-          style={{ fontFamily: "var(--font-cormorant)", fontSize: "clamp(0.95rem, 3.5vw, 1.15rem)", fontStyle: "italic" }}>
+          style={{ fontFamily: "var(--font-cormorant)", fontSize: "clamp(1.15rem, 4vw, 1.35rem)", fontStyle: "italic" }}>
           Now, we are ready to take our biggest step yet and promise a lifetime side by side. But a beautiful story is meant to be shared with the people we love and care about most. Please join us to celebrate the beginning of our forever.
         </p>
       </div>
