@@ -10,10 +10,13 @@ export default function Page() {
     <PageWrapper>
       <main>
         <SaveTheDateSection />
-        <VideoBgSection />
+        {/* Wrapper gives the sticky story section 100dvh of pinning room while invitation slides over */}
+        <div style={{ height: "200dvh", position: "relative" }}>
+          <VideoBgSection />
+        </div>
         <InvitationMessage />
         <EventsSection />
-<RSVPForm />
+        <RSVPForm />
       </main>
     </PageWrapper>
   );

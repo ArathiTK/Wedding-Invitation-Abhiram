@@ -3,7 +3,7 @@ import GoldDivider from "./ui/GoldDivider";
 
 export default function VideoBgSection() {
   return (
-    <section id="our-story" className="relative h-[100dvh] overflow-hidden flex flex-col justify-center px-8">
+    <section id="our-story" className="sticky top-0 h-[100dvh] overflow-hidden flex flex-col justify-center px-8" style={{ zIndex: 1 }}>
       <video
         src="/assets/bg video 1.mp4"
         autoPlay
