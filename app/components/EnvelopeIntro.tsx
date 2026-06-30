@@ -28,7 +28,7 @@ export default function EnvelopeIntro({ onOpen, onTap, onVideoEnd }: Props) {
     videoRef.current?.pause();
     onVideoEnd?.();
     setState("done");
-    setTimeout(() => onOpen(), 60);
+    onOpen();
   }
 
   function handleTap() {
@@ -48,7 +48,7 @@ export default function EnvelopeIntro({ onOpen, onTap, onVideoEnd }: Props) {
       className="fixed inset-0 z-50 overflow-hidden mx-auto w-full md:max-w-[430px]"
       style={{ height: "100dvh", backgroundColor: "#181e13", cursor: state === "idle" ? "pointer" : "default" }}
       animate={{ opacity: state === "done" ? 0 : 1 }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: 0 }}
     >
       <video
         ref={videoRef}
