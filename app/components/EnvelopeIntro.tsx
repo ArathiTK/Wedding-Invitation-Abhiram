@@ -1,7 +1,6 @@
 "use client";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import CountdownTimer from "./ui/CountdownTimer";
 
 interface Props {
   onOpen: () => void;
@@ -11,61 +10,56 @@ interface Props {
 
 const VIDEO = "/assets/bg video 2 - evelope.mp4";
 
-type State = "idle" | "playing" | "ended" | "done";
+type State = "idle" | "playing" | "done";
 
 export default function EnvelopeIntro({ onOpen, onTap, onVideoEnd }: Props) {
   const [state, setState] = useState<State>("idle");
   const videoRef = useRef<HTMLVideoElement>(null);
+  const endedRef = useRef(false);
 
-  function handleScrollDown() {
+  // Force-load so first frame renders as preview on all devices
+  useEffect(() => {
+    videoRef.current?.load();
+  }, []);
+
+  function handleEnd() {
+    if (endedRef.current) return;
+    endedRef.current = true;
+    videoRef.current?.pause();
+    onVideoEnd?.();
     setState("done");
-    setTimeout(() => {
-      onOpen();
-    }, 60);
+    setTimeout(() => onOpen(), 60);
   }
 
   function handleTap() {
-    if (state === "idle") {
-      setState("playing");
-      if (videoRef.current) videoRef.current.playbackRate = 1.4;
-      videoRef.current?.play();
-      onTap?.();
-    } else if (state === "ended") {
-      handleScrollDown();
+    if (state !== "idle") return;
+    setState("playing");
+    const v = videoRef.current;
+    if (v) {
+      try { v.playbackRate = 1.4; } catch {}
+      v.play().catch(() => {});
     }
-  }
-
-  function handleEnded() {
-    videoRef.current?.pause();
-    setState("ended");
-    onVideoEnd?.();
-    handleScrollDown();
-  }
-
-  function handleScrollGesture() {
-    if (state === "ended") handleScrollDown();
+    onTap?.();
   }
 
   return (
     <motion.div
       onClick={handleTap}
-      onWheel={handleScrollGesture}
-      onTouchMove={handleScrollGesture}
       className="fixed inset-0 z-50 overflow-hidden mx-auto w-full md:max-w-[430px]"
-      style={{ height: "100dvh", backgroundColor: "#181e13", cursor: state === "idle" || state === "ended" ? "pointer" : "default" }}
-      animate={state === "done" ? { opacity: 0 } : { opacity: 1 }}
+      style={{ height: "100dvh", backgroundColor: "#181e13", cursor: state === "idle" ? "pointer" : "default" }}
+      animate={{ opacity: state === "done" ? 0 : 1 }}
       transition={{ duration: 0.3 }}
     >
-      {/* Intro video — first frame acts as preview on idle */}
       <video
         ref={videoRef}
         src={VIDEO}
         playsInline
-        onEnded={handleEnded}
-        onError={handleEnded}
+        preload="auto"
+        onEnded={handleEnd}
+        onError={handleEnd}
         onTimeUpdate={() => {
           const v = videoRef.current;
-          if (state === "playing" && v && v.duration && v.currentTime >= v.duration - 1) handleEnded();
+          if (state === "playing" && v && v.duration && v.currentTime >= v.duration - 1) handleEnd();
         }}
         className="absolute inset-0 h-full w-full object-cover"
       />
@@ -89,29 +83,6 @@ export default function EnvelopeIntro({ onOpen, onTap, onVideoEnd }: Props) {
           }}
         >
           Tap to open
-        </motion.p>
-      </motion.div>
-
-      {/* SCROLL DOWN + COUNTDOWN — shown on the final frame of the intro video */}
-      <motion.div
-        className="absolute bottom-4 left-0 right-0 flex flex-col items-center gap-4 z-30 pointer-events-none"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: state === "ended" ? 1 : 0 }}
-        transition={{ duration: 0.2 }}
-      >
-        <CountdownTimer />
-        <motion.p
-          animate={{ y: [0, -5, 0] }}
-          transition={{ repeat: Infinity, duration: 2.4, ease: "easeInOut" }}
-          style={{
-            fontFamily: "var(--font-cormorant)",
-            fontSize: "0.65rem",
-            letterSpacing: "0.28em",
-            textTransform: "uppercase",
-            color: "#000000",
-          }}
-        >
-          Scroll down
         </motion.p>
       </motion.div>
     </motion.div>

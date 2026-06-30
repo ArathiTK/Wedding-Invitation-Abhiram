@@ -1,10 +1,25 @@
 "use client";
+import { useEffect, useRef } from "react";
 import GoldDivider from "./ui/GoldDivider";
 
 export default function VideoBgSection() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.play().catch(() => {
+      // Retry on first user interaction if autoplay was blocked
+      const retry = () => { v.play().catch(() => {}); document.removeEventListener("touchstart", retry); document.removeEventListener("click", retry); };
+      document.addEventListener("touchstart", retry, { once: true });
+      document.addEventListener("click", retry, { once: true });
+    });
+  }, []);
+
   return (
     <section id="our-story" className="relative h-[100dvh] overflow-hidden flex flex-col justify-center px-8">
       <video
+        ref={videoRef}
         src="/assets/bg video 1.mp4"
         autoPlay
         loop

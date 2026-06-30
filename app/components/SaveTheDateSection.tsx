@@ -9,10 +9,15 @@ export default function SaveTheDateSection() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    if (opened && videoRef.current) {
-      videoRef.current.currentTime = 0;
-      videoRef.current.play().catch(() => {});
-    }
+    if (!opened) return;
+    const v = videoRef.current;
+    if (!v) return;
+    v.currentTime = 0;
+    v.play().catch(() => {
+      const retry = () => { v.play().catch(() => {}); document.removeEventListener("touchstart", retry); document.removeEventListener("click", retry); };
+      document.addEventListener("touchstart", retry, { once: true });
+      document.addEventListener("click", retry, { once: true });
+    });
   }, [opened]);
 
   return (
