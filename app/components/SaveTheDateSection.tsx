@@ -17,20 +17,25 @@ export default function SaveTheDateSection() {
         className="absolute inset-0 w-full h-full object-cover"
         suppressHydrationWarning
       />
-      <div
-        className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none"
-        style={{ background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, transparent 100%)" }}
-      />
       <AnimatePresence>
         {opened && (
-          <motion.div
-            className="absolute bottom-10 left-0 right-0 flex flex-col items-center gap-4 pointer-events-none"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.5, ease: "easeOut", delay: 0.6 }}
-          >
-            <CountdownTimer />
-          </motion.div>
+          <>
+            <motion.div
+              className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1.5, ease: "easeOut", delay: 0.6 }}
+              style={{ background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, transparent 100%)" }}
+            />
+            <motion.div
+              className="absolute bottom-10 left-0 right-0 flex flex-col items-center gap-4 pointer-events-none"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.5, ease: "easeOut", delay: 0.6 }}
+            >
+              <CountdownTimer />
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </section>
