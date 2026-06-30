@@ -9,8 +9,7 @@ interface Props {
   onVideoEnd?: () => void;
 }
 
-const IMG   = "/assets/reference/envelope.png";
-const VIDEO = "/assets/reference/hero-video.mp4";
+const VIDEO = "/assets/bg video 2 - evelope.mp4";
 
 type State = "idle" | "playing" | "ended" | "done";
 
@@ -40,6 +39,7 @@ export default function EnvelopeIntro({ onOpen, onTap, onVideoEnd }: Props) {
     videoRef.current?.pause();
     setState("ended");
     onVideoEnd?.();
+    handleScrollDown();
   }
 
   function handleScrollGesture() {
@@ -56,27 +56,18 @@ export default function EnvelopeIntro({ onOpen, onTap, onVideoEnd }: Props) {
       animate={state === "done" ? { opacity: 0 } : { opacity: 1 }}
       transition={{ duration: 0.3 }}
     >
-      {/* Envelope cover */}
-      {state === "idle" && (
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `url('${IMG}')`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        />
-      )}
-
-      {/* Intro video */}
+      {/* Intro video — first frame acts as preview on idle */}
       <video
         ref={videoRef}
         src={VIDEO}
         playsInline
         onEnded={handleEnded}
         onError={handleEnded}
+        onTimeUpdate={() => {
+          const v = videoRef.current;
+          if (state === "playing" && v && v.duration && v.currentTime >= v.duration - 1) handleEnded();
+        }}
         className="absolute inset-0 h-full w-full object-cover"
-        style={{ opacity: state === "playing" || state === "ended" ? 1 : 0 }}
       />
 
       {/* TAP TO OPEN */}

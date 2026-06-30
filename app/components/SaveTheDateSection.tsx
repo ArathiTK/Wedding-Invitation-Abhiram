@@ -1,24 +1,41 @@
 "use client";
+import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import CountdownTimer from "./ui/CountdownTimer";
 import { useIntro } from "@/app/context/IntroContext";
 
 export default function SaveTheDateSection() {
   const { opened } = useIntro();
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (opened && videoRef.current) {
+      videoRef.current.currentTime = 0;
+      videoRef.current.play().catch(() => {});
+    }
+  }, [opened]);
 
   return (
-    <section
-      className="relative"
-      style={{
-        minHeight: "100dvh",
-        width: "100%",
-        backgroundImage: "url('/assets/reference/hero-video-lastframe.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center top",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
-      <div className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, transparent 100%)" }} />
+    <section className="relative overflow-hidden" style={{ minHeight: "100dvh", width: "100%" }}>
+      <video
+        ref={videoRef}
+        src="/assets/bg video 2 - card.mp4"
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+      <AnimatePresence>
+        {opened && (
+          <motion.div
+            className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 2, ease: "easeInOut" }}
+            style={{ background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, transparent 100%)" }}
+          />
+        )}
+      </AnimatePresence>
       <AnimatePresence>
         {opened && (
           <motion.div
