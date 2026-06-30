@@ -20,12 +20,13 @@ export default function VideoBgSection() {
     <section id="our-story" className="relative h-[100dvh] overflow-hidden flex flex-col justify-center px-8">
       <video
         ref={videoRef}
-        src="/assets/bg video 1.mp4"
+        src="/assets/bg%20video%201.mp4"
         autoPlay
         loop
         muted
         playsInline
         className="absolute inset-0 w-full h-full object-cover"
+        suppressHydrationWarning
       />
       <div className="absolute inset-0" style={{ backgroundColor: "rgba(31, 37, 25, 0.55)" }} />
 

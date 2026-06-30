@@ -24,11 +24,12 @@ export default function SaveTheDateSection() {
     <section className="relative overflow-hidden" style={{ minHeight: "100dvh", width: "100%" }}>
       <video
         ref={videoRef}
-        src="/assets/bg video 2 - card.mp4"
+        src="/assets/bg%20video%202%20-%20card.mp4"
         loop
         muted
         playsInline
         className="absolute inset-0 w-full h-full object-cover"
+        suppressHydrationWarning
       />
       <AnimatePresence>
         {opened && (

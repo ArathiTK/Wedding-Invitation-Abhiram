@@ -8,7 +8,7 @@ interface Props {
   onVideoEnd?: () => void;
 }
 
-const VIDEO = "/assets/bg video 2 - evelope.mp4";
+const VIDEO = "/assets/bg%20video%202%20-%20evelope.mp4";
 
 type State = "idle" | "playing" | "done";
 
@@ -62,6 +62,7 @@ export default function EnvelopeIntro({ onOpen, onTap, onVideoEnd }: Props) {
           if (state === "playing" && v && v.duration && v.currentTime >= v.duration - 1) handleEnd();
         }}
         className="absolute inset-0 h-full w-full object-cover"
+        suppressHydrationWarning
       />
 
       {/* TAP TO OPEN */}
