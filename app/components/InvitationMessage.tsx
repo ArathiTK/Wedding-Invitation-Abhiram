@@ -63,7 +63,7 @@ export default function InvitationMessage() {
         {/* 6. Together with families */}
         <AnimateOnScroll delay={0.4}>
           <p className="heading-display text-xs text-[#c9a876] mt-[clamp(0.5rem,3dvh,2rem)]">
-            Together with Our Families, Invite You to Celebrate the beginning of our<br />Happily Ever After
+            Together with Our Families, Invite You to Celebrate the beginning of our Happily Ever After
           </p>
         </AnimateOnScroll>
 
