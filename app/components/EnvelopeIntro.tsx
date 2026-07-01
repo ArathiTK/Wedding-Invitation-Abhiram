@@ -14,8 +14,14 @@ type State = "idle" | "playing" | "done";
 
 export default function EnvelopeIntro({ onOpen, onTap, onVideoEnd }: Props) {
   const [state, setState] = useState<State>("idle");
+  const stateRef = useRef<State>("idle"); // always-current state for event handlers
   const videoRef = useRef<HTMLVideoElement>(null);
   const endedRef = useRef(false);
+
+  function setStateSynced(s: State) {
+    stateRef.current = s;
+    setState(s);
+  }
 
   // Force-load so first frame renders as preview on all devices
   useEffect(() => {
@@ -27,13 +33,13 @@ export default function EnvelopeIntro({ onOpen, onTap, onVideoEnd }: Props) {
     endedRef.current = true;
     videoRef.current?.pause();
     onVideoEnd?.();
-    setState("done");
+    setStateSynced("done");
     onOpen();
   }
 
   function handleTap() {
-    if (state !== "idle") return;
-    setState("playing");
+    if (stateRef.current !== "idle") return;
+    setStateSynced("playing");
     const v = videoRef.current;
     if (v) {
       try { v.playbackRate = 1.4; } catch {}
@@ -59,7 +65,14 @@ export default function EnvelopeIntro({ onOpen, onTap, onVideoEnd }: Props) {
         onError={handleEnd}
         onTimeUpdate={() => {
           const v = videoRef.current;
-          if (state === "playing" && v && v.duration && v.currentTime >= v.duration - 1) handleEnd();
+          // Use stateRef to avoid stale closure; guard against NaN/Infinity duration
+          if (
+            stateRef.current === "playing" &&
+            v &&
+            isFinite(v.duration) &&
+            v.duration > 0 &&
+            v.currentTime >= v.duration - 1
+          ) handleEnd();
         }}
         className="absolute inset-0 h-full w-full object-cover"
         suppressHydrationWarning
