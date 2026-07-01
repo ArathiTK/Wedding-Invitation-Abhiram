@@ -9,11 +9,13 @@ export default function VideoBgSection() {
     const v = videoRef.current;
     if (!v) return;
     v.play().catch(() => {
-      // Retry on first user interaction if autoplay was blocked
       const retry = () => { v.play().catch(() => {}); document.removeEventListener("touchstart", retry); document.removeEventListener("click", retry); };
       document.addEventListener("touchstart", retry, { once: true });
       document.addEventListener("click", retry, { once: true });
     });
+    const resume = () => { if (!document.hidden) v.play().catch(() => {}); };
+    document.addEventListener("visibilitychange", resume);
+    return () => document.removeEventListener("visibilitychange", resume);
   }, []);
 
   return (

@@ -1,14 +1,23 @@
 "use client";
+import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import CountdownTimer from "./ui/CountdownTimer";
 import { useIntro } from "@/app/context/IntroContext";
 
 export default function SaveTheDateSection() {
   const { opened } = useIntro();
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const resume = () => { if (!document.hidden) videoRef.current?.play().catch(() => {}); };
+    document.addEventListener("visibilitychange", resume);
+    return () => document.removeEventListener("visibilitychange", resume);
+  }, []);
 
   return (
     <section className="relative overflow-hidden" style={{ minHeight: "100dvh", width: "100%" }}>
       <video
+        ref={videoRef}
         src="/assets/bg%20video%202%20-%20card.mp4"
         autoPlay
         loop

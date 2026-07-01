@@ -56,14 +56,11 @@ export default function PageWrapper({ children }: { children: React.ReactNode })
     };
   }, [opened]);
 
-  // Pause when the tab is hidden/minimized, resume when it's visible again.
+  // Resume audio when tab becomes visible again after being hidden/minimized.
   useEffect(() => {
     if (!started) return;
     function handleVisibility() {
-      const audio = audioRef.current;
-      if (!audio) return;
-      if (document.hidden) audio.pause();
-      else audio.play().catch(() => {});
+      if (!document.hidden) audioRef.current?.play().catch(() => {});
     }
     document.addEventListener("visibilitychange", handleVisibility);
     return () => document.removeEventListener("visibilitychange", handleVisibility);
