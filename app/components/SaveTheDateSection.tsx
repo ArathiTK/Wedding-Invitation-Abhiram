@@ -9,9 +9,14 @@ export default function SaveTheDateSection() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    const resume = () => { if (!document.hidden) videoRef.current?.play().catch(() => {}); };
-    document.addEventListener("visibilitychange", resume);
-    return () => document.removeEventListener("visibilitychange", resume);
+    const handleVisibility = () => {
+      const v = videoRef.current;
+      if (!v) return;
+      if (document.hidden) v.pause();
+      else v.play().catch(() => {});
+    };
+    document.addEventListener("visibilitychange", handleVisibility);
+    return () => document.removeEventListener("visibilitychange", handleVisibility);
   }, []);
 
   return (
