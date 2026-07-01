@@ -43,9 +43,12 @@ export default function PageWrapper({ children }: { children: React.ReactNode })
     return () => cancelAnimationFrame(frame);
   }, [started]);
 
-  // Lock scrolling (and keep the page pinned to the top) until the envelope is opened.
+  // Lock scrolling until the envelope is opened; snap to top when revealed.
   useEffect(() => {
     if (opened) {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
       document.body.style.overflow = "";
       return;
     }
