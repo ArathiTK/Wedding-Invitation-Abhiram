@@ -9,13 +9,25 @@ export default function VideoBgSection() {
     const v = videoRef.current;
     if (!v) return;
 
-    const tryPlay = () => v.play().catch(() => {});
+    const tryPlay = () => {
+      v.load();
+      v.play().catch(() => {});
+    };
 
+    // Attempt play immediately on mount
+    tryPlay();
+
+    // Re-attempt whenever scrolled back into view
     const observer = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) tryPlay(); },
-      { threshold: 0.25 }
+      { threshold: 0.1 }
     );
     observer.observe(v);
+
+    // Re-attempt on user gesture in case browser blocked autoplay
+    const onGesture = () => tryPlay();
+    document.addEventListener("touchstart", onGesture, { once: true });
+    document.addEventListener("click", onGesture, { once: true });
 
     const handleVisibility = () => {
       if (document.hidden) v.pause();
@@ -26,6 +38,8 @@ export default function VideoBgSection() {
     return () => {
       observer.disconnect();
       document.removeEventListener("visibilitychange", handleVisibility);
+      document.removeEventListener("touchstart", onGesture);
+      document.removeEventListener("click", onGesture);
     };
   }, []);
 
@@ -38,6 +52,7 @@ export default function VideoBgSection() {
         loop
         muted
         playsInline
+        preload="auto"
         className="absolute inset-0 w-full h-full object-cover pointer-events-none"
         suppressHydrationWarning
       />
