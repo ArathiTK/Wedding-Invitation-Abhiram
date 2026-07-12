@@ -11,29 +11,37 @@ export default function SaveTheDateSection() {
   useEffect(() => {
     const v = videoRef.current;
     if (!v) return;
-    v.play().catch(() => {
-      const retry = () => { v.play().catch(() => {}); document.removeEventListener("touchstart", retry); document.removeEventListener("click", retry); };
-      document.addEventListener("touchstart", retry, { once: true });
-      document.addEventListener("click", retry, { once: true });
-    });
+
+    const tryPlay = () => v.play().catch(() => {});
+
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) tryPlay(); },
+      { threshold: 0.25 }
+    );
+    observer.observe(v);
+
     const handleVisibility = () => {
       if (document.hidden) v.pause();
-      else v.play().catch(() => {});
+      else tryPlay();
     };
     document.addEventListener("visibilitychange", handleVisibility);
-    return () => document.removeEventListener("visibilitychange", handleVisibility);
+
+    return () => {
+      observer.disconnect();
+      document.removeEventListener("visibilitychange", handleVisibility);
+    };
   }, []);
 
   return (
     <section className="relative overflow-hidden" style={{ minHeight: "100dvh", width: "100%" }}>
       <video
         ref={videoRef}
-        src="/assets/bg%20video%202%20-%20card.mp4"
+        src="/assets/bg%20video%203%20-%20card.mp4"
         autoPlay
         loop
         muted
         playsInline
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
         suppressHydrationWarning
       />
       <AnimatePresence>
