@@ -42,7 +42,7 @@ export default function PageWrapper({ children }: { children: React.ReactNode })
       let frame: number;
       function fade(now: number) {
         const progress = Math.min((now - start) / FADE_DURATION, 1);
-        audio.volume = progress * TARGET_VOLUME;
+        if (audio) audio.volume = progress * TARGET_VOLUME;
         if (progress < 1) frame = requestAnimationFrame(fade);
       }
       frame = requestAnimationFrame(fade);
