@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useRef } from "react";
-import GoldDivider from "./ui/GoldDivider";
 
 export default function VideoBgSection() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -9,26 +8,25 @@ export default function VideoBgSection() {
     const v = videoRef.current;
     if (!v) return;
 
-    const tryPlay = () => {
-      v.load();
-      v.play().catch(() => {});
-    };
+    // load() only once — buffers the video without discarding progress on retry
+    v.load();
 
-    // Attempt play immediately on mount
+    const tryPlay = () => v.play().catch(() => {});
+
+    // Play immediately; also re-attempt on first user gesture (iOS blocks autoplay until gesture)
     tryPlay();
+    const onGesture = () => tryPlay();
+    document.addEventListener("touchstart", onGesture, { once: true });
+    document.addEventListener("click", onGesture, { once: true });
 
-    // Re-attempt whenever scrolled back into view
+    // Re-attempt whenever section scrolls back into view
     const observer = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) tryPlay(); },
       { threshold: 0.1 }
     );
     observer.observe(v);
 
-    // Re-attempt on user gesture in case browser blocked autoplay
-    const onGesture = () => tryPlay();
-    document.addEventListener("touchstart", onGesture, { once: true });
-    document.addEventListener("click", onGesture, { once: true });
-
+    // Pause/resume on tab switch
     const handleVisibility = () => {
       if (document.hidden) v.pause();
       else tryPlay();
@@ -66,8 +64,6 @@ export default function VideoBgSection() {
           style={{ fontFamily: "var(--font-cormorant)", fontSize: "clamp(1.15rem, 4vw, 1.35rem)", fontStyle: "italic" }}>
           Two separate paths, moving at their own pace, quietly led us to each other. Through a million tiny moments of laughter, comfort, and shared dreams, our individual journeys seamlessly became one beautiful love story.
         </p>
-
-
       </div>
     </section>
   );

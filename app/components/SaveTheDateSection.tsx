@@ -12,26 +12,25 @@ export default function SaveTheDateSection() {
     const v = videoRef.current;
     if (!v) return;
 
-    const tryPlay = () => {
-      v.load();
-      v.play().catch(() => {});
-    };
+    // load() only once — buffers the video without discarding progress on retry
+    v.load();
 
-    // Attempt play immediately on mount
+    const tryPlay = () => v.play().catch(() => {});
+
+    // Play immediately; also re-attempt on first user gesture (iOS blocks autoplay until gesture)
     tryPlay();
+    const onGesture = () => tryPlay();
+    document.addEventListener("touchstart", onGesture, { once: true });
+    document.addEventListener("click", onGesture, { once: true });
 
-    // Re-attempt whenever scrolled back into view
+    // Re-attempt whenever section scrolls back into view
     const observer = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) tryPlay(); },
       { threshold: 0.1 }
     );
     observer.observe(v);
 
-    // Re-attempt on user gesture in case browser blocked autoplay
-    const onGesture = () => tryPlay();
-    document.addEventListener("touchstart", onGesture, { once: true });
-    document.addEventListener("click", onGesture, { once: true });
-
+    // Pause/resume on tab switch
     const handleVisibility = () => {
       if (document.hidden) v.pause();
       else tryPlay();

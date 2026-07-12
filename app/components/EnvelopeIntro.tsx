@@ -14,7 +14,7 @@ type State = "idle" | "playing" | "done";
 
 export default function EnvelopeIntro({ onOpen, onTap, onVideoEnd }: Props) {
   const [state, setState] = useState<State>("idle");
-  const stateRef = useRef<State>("idle"); // always-current state for event handlers
+  const stateRef = useRef<State>("idle");
   const videoRef = useRef<HTMLVideoElement>(null);
   const endedRef = useRef(false);
 
@@ -23,9 +23,13 @@ export default function EnvelopeIntro({ onOpen, onTap, onVideoEnd }: Props) {
     setState(s);
   }
 
-  // Force-load so first frame renders as preview on all devices
+  // Preload video so first frame shows immediately and tap response is instant
   useEffect(() => {
-    videoRef.current?.load();
+    const v = videoRef.current;
+    if (!v) return;
+    v.load();
+    // Seek to frame 0 so a poster frame renders on all devices
+    v.currentTime = 0;
   }, []);
 
   function handleEnd() {
@@ -43,7 +47,7 @@ export default function EnvelopeIntro({ onOpen, onTap, onVideoEnd }: Props) {
     const v = videoRef.current;
     if (v) {
       try { v.playbackRate = 1.4; } catch {}
-      v.play().catch(() => {});
+      v.play().catch(() => handleEnd()); // if play fails, proceed to open anyway
     }
     onTap?.();
   }
@@ -59,13 +63,13 @@ export default function EnvelopeIntro({ onOpen, onTap, onVideoEnd }: Props) {
       <video
         ref={videoRef}
         src={VIDEO}
+        muted
         playsInline
         preload="auto"
         onEnded={handleEnd}
         onError={handleEnd}
         onTimeUpdate={() => {
           const v = videoRef.current;
-          // Use stateRef to avoid stale closure; guard against NaN/Infinity duration
           if (
             stateRef.current === "playing" &&
             v &&
