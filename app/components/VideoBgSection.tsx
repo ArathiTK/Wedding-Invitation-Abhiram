@@ -10,8 +10,9 @@ export default function VideoBgSection() {
 
     // load() only once — buffers the video without discarding progress on retry
     v.load();
+    v.playbackRate = 0.5;
 
-    const tryPlay = () => v.play().catch(() => {});
+    const tryPlay = () => { v.playbackRate = 0.5; return v.play().catch(() => {}); };
 
     // Play immediately; keep retrying on every gesture until it succeeds
     tryPlay();
@@ -58,9 +59,10 @@ export default function VideoBgSection() {
         playsInline
         preload="auto"
         className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+        onCanPlay={e => { (e.target as HTMLVideoElement).playbackRate = 0.5; }}
         suppressHydrationWarning
       />
-      <div className="absolute inset-0" style={{ backgroundColor: "rgba(20, 25, 15, 0.28)" }} />
+      <div className="absolute inset-0" style={{ backgroundColor: "rgba(20, 25, 15, 0.1)" }} />
       <div className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none z-10" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 40%, transparent 100%)" }} />
 
       <div className="relative z-10 w-full mx-auto text-center">
