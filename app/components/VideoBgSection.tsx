@@ -61,7 +61,6 @@ export default function VideoBgSection() {
         suppressHydrationWarning
       />
       <div className="absolute inset-0" style={{ backgroundColor: "rgba(20, 25, 15, 0.28)" }} />
-      <div className="absolute top-0 left-0 right-0 h-40 pointer-events-none z-10" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 40%, transparent 100%)" }} />
       <div className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none z-10" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 40%, transparent 100%)" }} />
 
       <div className="relative z-10 w-full mx-auto text-center">
