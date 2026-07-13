@@ -17,11 +17,16 @@ export default function SaveTheDateSection() {
 
     const tryPlay = () => v.play().catch(() => {});
 
-    // Play immediately; also re-attempt on first user gesture (iOS blocks autoplay until gesture)
+    // Play immediately; keep retrying on every gesture until it succeeds
     tryPlay();
-    const onGesture = () => tryPlay();
-    document.addEventListener("touchstart", onGesture, { once: true });
-    document.addEventListener("click", onGesture, { once: true });
+    const onGesture = () => {
+      v.play().then(() => {
+        document.removeEventListener("touchstart", onGesture);
+        document.removeEventListener("click", onGesture);
+      }).catch(() => {});
+    };
+    document.addEventListener("touchstart", onGesture);
+    document.addEventListener("click", onGesture);
 
     // Re-attempt whenever section scrolls back into view
     const observer = new IntersectionObserver(
