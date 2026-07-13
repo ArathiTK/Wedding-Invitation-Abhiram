@@ -45,7 +45,7 @@ export default function VideoBgSection() {
     <section id="our-story" className="relative h-[100dvh] overflow-hidden flex flex-col justify-start px-8 pt-[12vh]">
       <video
         ref={videoRef}
-        src="/assets/bg%20video%20-%20walking%203.mp4"
+        src="/assets/walking%20video%201.mp4"
         autoPlay
         loop
         muted
