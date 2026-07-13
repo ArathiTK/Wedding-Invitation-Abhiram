@@ -17,8 +17,9 @@ export default function SaveTheDateSection() {
 
     const tryPlay = () => v.play().catch(() => {});
 
-    // Play immediately; keep retrying on every gesture until it succeeds
-    tryPlay();
+    // Wait for section 2 to be buffered before starting section 1 playback
+    const onSection2Ready = () => tryPlay();
+    document.addEventListener("section2ready", onSection2Ready, { once: true });
     const onGesture = () => {
       v.play().then(() => {
         document.removeEventListener("touchstart", onGesture);
@@ -47,6 +48,7 @@ export default function SaveTheDateSection() {
       document.removeEventListener("visibilitychange", handleVisibility);
       document.removeEventListener("touchstart", onGesture);
       document.removeEventListener("click", onGesture);
+      document.removeEventListener("section2ready", onSection2Ready);
     };
   }, []);
 

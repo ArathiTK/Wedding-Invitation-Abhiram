@@ -12,6 +12,11 @@ export default function VideoBgSection() {
     v.load();
     v.playbackRate = 0.5;
 
+    // Signal section 1 that section 2 is buffered and ready
+    v.addEventListener("canplay", () => {
+      document.dispatchEvent(new CustomEvent("section2ready"));
+    }, { once: true });
+
     const tryPlay = () => { v.playbackRate = 0.5; return v.play().catch(() => {}); };
 
     // Play immediately; keep retrying on every gesture until it succeeds
