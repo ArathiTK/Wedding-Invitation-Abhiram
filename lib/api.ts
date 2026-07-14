@@ -1,5 +1,6 @@
 export interface RSVPData {
   name: string;
+  guestCount: number;
   attendance: "ceremony" | "reception" | "both" | "decline";
 }
 

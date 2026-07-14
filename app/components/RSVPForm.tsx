@@ -67,6 +67,12 @@ export default function RSVPForm() {
                 {errors.name && <p className="text-red-400 text-xs mt-1">{errors.name.message}</p>}
               </div>
               <div>
+                <label className={labelClass}>How Many Guests Will Be Joining You? *</label>
+                <input type="number" min={1} max={20} placeholder="Including yourself" className={inputClass}
+                  {...register("guestCount", { required: "Please enter the number of guests", min: { value: 1, message: "At least 1 guest" }, max: { value: 20, message: "Maximum 20 guests" }, valueAsNumber: true })} />
+                {errors.guestCount && <p className="text-red-400 text-xs mt-1">{errors.guestCount.message}</p>}
+              </div>
+              <div>
                 <label className={labelClass}>Are You Attending? *</label>
                 <div className="flex flex-col gap-2">
                   {[
