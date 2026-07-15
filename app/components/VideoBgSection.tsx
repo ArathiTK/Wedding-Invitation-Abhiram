@@ -69,10 +69,11 @@ export default function VideoBgSection() {
         suppressHydrationWarning
       />
       <div className="absolute inset-0" style={{ backgroundColor: "rgba(20, 25, 15, 0.1)" }} />
-      <div className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none z-10" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 40%, transparent 100%)" }} />
 
       <div className="relative z-10 w-full mx-auto text-center">
-        <p className="heading-display text-xs text-black mb-[clamp(1rem,4vh,2rem)]">Our Story</p>
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="#000000" className="mx-auto mb-[clamp(1rem,4vh,2rem)]">
+          <path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/>
+        </svg>
         <p className="text-black leading-relaxed mb-[clamp(1.5rem,5vh,3rem)]"
           style={{ fontFamily: "var(--font-cormorant)", fontSize: "clamp(1.15rem, 4vw, 1.35rem)", fontStyle: "italic" }}>
           Two separate paths, moving at their own pace, quietly led us to each other. Through a million tiny moments of laughter, comfort, and shared dreams, our individual journeys seamlessly became one beautiful love story.
