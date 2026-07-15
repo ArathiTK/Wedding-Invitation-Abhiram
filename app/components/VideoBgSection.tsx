@@ -57,11 +57,13 @@ export default function VideoBgSection() {
     <section id="our-story" className="relative h-[100dvh] overflow-hidden flex flex-col justify-start px-8 pt-[12vh]">
       <video
         ref={videoRef}
-        src="/assets/walking%20video%202.mp4"
+        src="/assets/walking%20video%203.mp4"
         autoPlay
         loop
         muted
         playsInline
+        // @ts-expect-error legacy attribute for older iOS Safari
+        webkit-playsinline="true"
         preload="auto"
         className="absolute inset-0 w-full h-full object-cover pointer-events-none"
         onCanPlay={e => { (e.target as HTMLVideoElement).playbackRate = 0.5; }}

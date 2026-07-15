@@ -6,6 +6,7 @@ import { submitRSVP, type RSVPData } from "@/lib/api";
 import { WEDDING } from "@/lib/constants";
 
 const inputClass = "w-full px-0 py-2 bg-transparent border-0 border-b border-[#c9a876]/40 text-[#f0e6da] text-sm placeholder:text-[#f0e6da]/30 focus:outline-none focus:border-[#c9a876] transition-colors rounded-none";
+const numberInputClass = inputClass + " [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none";
 const labelClass = "block heading-display text-xs text-[#c9a876] mb-2";
 
 export default function RSVPForm() {
@@ -59,7 +60,7 @@ export default function RSVPForm() {
 
         <AnimateOnScroll delay={0.15}>
           <div className="gold-border-card rounded-lg p-6 md:p-8 w-full" >
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-[clamp(0.75rem,3vh,1rem)]" noValidate>
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-[clamp(1.25rem,4vh,1.75rem)]" noValidate>
               <div>
                 <label className={labelClass}>Full Name *</label>
                 <input type="text" placeholder="Your name" className={inputClass}
@@ -67,8 +68,8 @@ export default function RSVPForm() {
                 {errors.name && <p className="text-red-400 text-xs mt-1">{errors.name.message}</p>}
               </div>
               <div>
-                <label className={labelClass}>How Many Guests Will Be Joining You? *</label>
-                <input type="number" min={1} max={20} placeholder="Including yourself" className={inputClass}
+                <label className={labelClass}>Total Number of Guests *</label>
+                <input type="number" min={1} max={20} placeholder="Including yourself" className={numberInputClass}
                   {...register("guestCount", { required: "Please enter the number of guests", min: { value: 1, message: "At least 1 guest" }, max: { value: 20, message: "Maximum 20 guests" }, valueAsNumber: true })} />
                 {errors.guestCount && <p className="text-red-400 text-xs mt-1">{errors.guestCount.message}</p>}
               </div>
