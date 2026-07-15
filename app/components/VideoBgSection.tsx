@@ -62,7 +62,6 @@ export default function VideoBgSection() {
         loop
         muted
         playsInline
-        // @ts-expect-error legacy attribute for older iOS Safari
         webkit-playsinline="true"
         preload="auto"
         className="absolute inset-0 w-full h-full object-cover pointer-events-none"
