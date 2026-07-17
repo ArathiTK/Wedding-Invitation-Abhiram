@@ -16,9 +16,9 @@ export const WEDDING = {
   ceremony: {
     date: "Friday, 06 November 2026",
     isoDate: "2026-11-06",
-    time: "10:00 AM – 11:00 AM",
-    startTime: "100000",
-    endTime: "110000",
+    time: "12:10 PM – 12:50 PM",
+    startTime: "121000",
+    endTime: "125000",
     venue: "Nova Auditorium Palazhi",
     address: "Opposite HiLite Mall, Kozhikode",
     contact: "+91-9447685756",

@@ -1,7 +1,7 @@
 ﻿"use client";
 import { useEffect, useState } from "react";
 
-const WEDDING_DATE = new Date("2026-11-06T10:00:00+05:30");
+const WEDDING_DATE = new Date("2026-11-06T12:10:00+05:30");
 
 interface TimeLeft {
   days: number;
