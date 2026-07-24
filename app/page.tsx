@@ -13,7 +13,7 @@ export default function Page() {
         <VideoBgSection />
         <InvitationMessage />
         <EventsSection />
-<RSVPForm />
+        <RSVPForm />
       </main>
     </PageWrapper>
   );

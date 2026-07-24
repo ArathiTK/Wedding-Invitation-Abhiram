@@ -6,15 +6,6 @@ export default function EventsSection() {
   const events = [
     {
       name: "Wedding Ceremony",
-      graphic: (
-        <svg width="44" height="44" viewBox="0 0 24 24" fill="none">
-          <path d="M4 4c0 5 3.5 9 8 9s8-4 8-9" stroke="#fff9f3" strokeWidth="0.5" strokeLinecap="round"/>
-          <circle cx="10" cy="13.5" r="1" fill="#fff9f3"/>
-          <circle cx="14" cy="13.5" r="1" fill="#fff9f3"/>
-          <path d="M12 13.5v2" stroke="#fff9f3" strokeWidth="0.5" strokeLinecap="round"/>
-          <path d="M12 15.5l-2.2 2.2a1.6 1.6 0 0 0 0 2.2l1.5 1.5a1 1 0 0 0 1.4 0l1.5-1.5a1.6 1.6 0 0 0 0-2.2L12 15.5z" stroke="#fff9f3" strokeWidth="0.5" strokeLinejoin="round"/>
-        </svg>
-      ),
       date: WEDDING.ceremony.date,
       time: WEDDING.ceremony.time,
       venue: WEDDING.ceremony.venue,
@@ -33,16 +24,6 @@ export default function EventsSection() {
     },
     {
       name: "Reception",
-      graphic: (
-        <svg width="44" height="44" viewBox="0 0 24 24" fill="none">
-          <path d="M12 2v3" stroke="#fff9f3" strokeWidth="0.5" strokeLinecap="round"/>
-          <path d="M12 5c-1 0-1.5.8-1.5 1.5S11 8 12 8s1.5-.8 1.5-1.5S13 5 12 5z" stroke="#fff9f3" strokeWidth="0.5"/>
-          <path d="M4 21v-6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v6" stroke="#fff9f3" strokeWidth="0.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M4 21h16" stroke="#fff9f3" strokeWidth="0.5" strokeLinecap="round"/>
-          <path d="M6 13v-2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2" stroke="#fff9f3" strokeWidth="0.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M4 17c1-1 2 1 3 0s2 1 3 0 2 1 3 0 2 1 3 0 2 1 3 0" stroke="#fff9f3" strokeWidth="0.5" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-      ),
       date: WEDDING.reception.date,
       time: WEDDING.reception.time,
       venue: WEDDING.reception.venue,
@@ -62,17 +43,17 @@ export default function EventsSection() {
   ];
 
   return (
-    <section id="events" className="h-[100dvh] flex flex-col justify-center overflow-y-auto py-[clamp(1.5rem,5vh,2.5rem)] px-6" style={{ backgroundColor: "#414b3b" }}>
-      <div className="max-w-xl mx-auto w-full">
+    <section id="events" className="h-[100dvh] flex flex-col justify-center items-center overflow-y-auto py-[clamp(1.5rem,5vh,2.5rem)] px-6">
+      <div className="max-w-xl mx-auto w-full rounded-2xl px-4 pt-[clamp(2rem,6vh,3.5rem)] pb-6 sm:px-6"
+        style={{ background: "rgba(255,255,255,0.08)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", border: "1px solid rgba(255,249,243,0.15)" }}>
         <AnimateOnScroll>
           <p className="heading-display text-xs text-[#fff9f3] text-center mb-[clamp(0.75rem,3vh,1.25rem)]">Events</p>
         </AnimateOnScroll>
 
         <div className="flex flex-col gap-[clamp(0.75rem,3vh,1.5rem)]">
-          {events.map(({ name, graphic, date, time, venue, address, cardBg, cardBgPosition, googleMapsUrl }, i) => (
+          {events.map(({ name, date, time, venue, address, cardBg, cardBgPosition, googleMapsUrl }, i) => (
             <AnimateOnScroll key={name} delay={0.1 + i * 0.1}>
-              <div className="gold-border-card rounded-lg p-5">
-                <div className="flex justify-center mb-[clamp(0.4rem,1.5vh,0.75rem)]">{graphic}</div>
+              <div className="rounded-lg p-5">
                 <h3 className="heading-gold heading-display text-center mb-[clamp(0.5rem,2vh,1rem)]"
                   style={{ fontSize: "clamp(1.1rem, 4.5vw, 1.5rem)", letterSpacing: "0.1em", color: "#fff9f3" }}>
                   {name}
