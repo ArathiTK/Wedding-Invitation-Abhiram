@@ -1,11 +1,10 @@
 "use client";
 import AnimateOnScroll from "./ui/AnimateOnScroll";
-import GoldDivider from "./ui/GoldDivider";
 
 export default function InvitationMessage() {
   return (
     <section id="invitation" className="h-[100svh] flex flex-col justify-center items-center overflow-hidden py-[clamp(3rem,18dvh,10rem)] px-6">
-      <div className="max-w-2xl mx-auto text-center flex flex-col items-center gap-[clamp(0.5rem,2dvh,1.25rem)] rounded-2xl px-6 py-6 sm:px-10"
+      <div className="max-w-2xl mx-auto text-center flex flex-col items-center gap-[clamp(0.5rem,2dvh,1.25rem)] rounded-2xl px-6 pt-[clamp(1.5rem,5dvh,2.5rem)] pb-[clamp(2.25rem,7dvh,3.5rem)] sm:px-10"
         style={{ background: "rgba(255,255,255,0.08)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", border: "1px solid rgba(255,249,243,0.15)" }}>
 
         {/* 1. Ganesh icon */}
@@ -64,16 +63,11 @@ export default function InvitationMessage() {
         {/* 6. Together with families */}
         <AnimateOnScroll delay={0.4}>
           <p className="heading-display text-xs text-[#fff9f3] mt-[clamp(0.25rem,1dvh,0.75rem)]">
-            Together with Our Families, Invite You to Celebrate the beginning of our Happily Ever After
+            Together with Our Families,<br />
+            Invite You to Celebrate<br />
+            the beginning of our<br />
+            Happily Ever After
           </p>
-        </AnimateOnScroll>
-
-        {/* 7. Divider */}
-        <AnimateOnScroll delay={0.5}>
-          {/* Card uses gap-[clamp(0.5rem,2dvh,1.25rem)] between children and py-6 (1.5rem)
-              bottom padding — this extra margin tops that gap up to 1.5rem so the space
-              above the divider matches the space below it (card's bottom edge). */}
-          <GoldDivider className="w-48 mt-[calc(1.5rem-clamp(0.5rem,2dvh,1.25rem))]" color="#fff9f3" />
         </AnimateOnScroll>
 
       </div>

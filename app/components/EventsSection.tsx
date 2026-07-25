@@ -44,21 +44,21 @@ export default function EventsSection() {
 
   return (
     <section id="events" className="h-[100svh] flex flex-col justify-center items-center overflow-y-auto py-[clamp(1.5rem,5vh,2.5rem)] px-6">
-      <div className="max-w-xl mx-auto w-full rounded-2xl px-4 pt-[clamp(2rem,6vh,3.5rem)] pb-6 sm:px-6"
+      <div className="max-w-xl mx-auto w-full rounded-2xl px-4 py-[clamp(1.25rem,4vh,2rem)] sm:px-6"
         style={{ background: "rgba(255,255,255,0.08)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", border: "1px solid rgba(255,249,243,0.15)" }}>
         <AnimateOnScroll>
-          <p className="heading-display text-xs text-[#fff9f3] text-center mb-[clamp(0.75rem,3vh,1.25rem)]">Events</p>
+          <p className="heading-display text-xs text-[#fff9f3] text-center mb-[clamp(0.5rem,2vh,0.75rem)]">Events</p>
         </AnimateOnScroll>
 
-        <div className="flex flex-col gap-[clamp(0.75rem,3vh,1.5rem)]">
+        <div className="flex flex-col gap-[clamp(0.5rem,2vh,1rem)]">
           {events.map(({ name, date, time, venue, address, cardBg, cardBgPosition, googleMapsUrl }, i) => (
             <AnimateOnScroll key={name} delay={0.1 + i * 0.1}>
-              <div className="rounded-lg p-5">
-                <h3 className="heading-gold heading-display text-center mb-[clamp(0.5rem,2vh,1rem)]"
+              <div className="rounded-lg p-4">
+                <h3 className="heading-gold heading-display text-center mb-[clamp(0.35rem,1.5vh,0.6rem)]"
                   style={{ fontSize: "clamp(1.1rem, 4.5vw, 1.5rem)", letterSpacing: "0.1em", color: "#fff9f3" }}>
                   {name}
                 </h3>
-                <div className="space-y-[clamp(0.5rem,2vh,0.85rem)]">
+                <div className="space-y-[clamp(0.35rem,1.5vh,0.6rem)]">
                   {[
                     {
                       label: "Date", value: date,
