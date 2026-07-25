@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
-const SPRING = { type: "spring" as const, stiffness: 160, damping: 26, mass: 1 };
+const SPRING = { type: "spring" as const, stiffness: 100, damping: 22, mass: 1 };
 const GESTURE_IDLE_MS = 100;
 const TOUCH_END_RELEASE_MS = 60;
 const TOUCH_THRESHOLD = 8;
