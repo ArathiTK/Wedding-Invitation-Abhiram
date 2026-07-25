@@ -19,19 +19,19 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://wedding-invitation-abhiram.vercel.app"),
-  title: "Abhiram TK & Athira K — Wedding Invitation",
+  title: process.env.NEXT_PUBLIC_SITE_TITLE || "Abhiram TK & Athira K — Wedding Invitation",
   description:
-    "You are cordially invited to the wedding of Abhiram TK & Athira K. Ceremony on 06 November 2026 at Nova Auditorium Palazhi, Kozhikode. Reception on 07 November 2026 at Sreevalsam Auditorium Payyanur.",
+    "Join us to celebrate the wedding of Abhiram TK & Athira K",
   openGraph: {
-    title: "Abhiram TK & Athira K — Wedding Invitation",
-    description: "Join us to celebrate the wedding of Abhiram TK & Athira K, November 2026.",
+    title: process.env.NEXT_PUBLIC_SITE_TITLE || "Abhiram TK & Athira K — Wedding Invitation",
+    description: "Join us to celebrate the wedding of Abhiram TK & Athira K.",
     type: "website",
     images: [{ url: "/assets/og-image.png?v=2", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Abhiram TK & Athira K — Wedding Invitation",
-    description: "Join us to celebrate the wedding of Abhiram TK & Athira K, November 2026.",
+    title: process.env.NEXT_PUBLIC_SITE_TITLE || "Abhiram TK & Athira K — Wedding Invitation",
+    description: "Join us to celebrate the wedding of Abhiram TK & Athira K.",
   },
 };
 
