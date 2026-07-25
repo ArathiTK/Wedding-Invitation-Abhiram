@@ -18,7 +18,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://wedding-invitation-abhiram.vercel.app"),
+  metadataBase: new URL("https://wedding-invitation-abhiram-athira.vercel.app"),
   title: "Abhiram TK & Athira K — Wedding Invitation",
   description:
     "You are cordially invited to the wedding of Abhiram TK & Athira K. Ceremony on 06 November 2026 at Nova Auditorium Palazhi, Kozhikode. Reception on 07 November 2026 at Sreevalsam Auditorium Payyanur.",
