@@ -1,25 +1,31 @@
+"use client";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
+
 /**
- * The green floral background layer. Width/height are measured pixel values (from
- * useFixedGreenBg) rather than vh/dvh/cover percentages, so the image is identically
- * scaled/cropped whether this is `position: absolute` (scrolling normally, before the
- * Invitation section is fully loaded) or `position: fixed` (locked once it is) — only
- * where the layer sits changes, never its size, so there's no zoom or offset.
+ * The green floral background layer, portaled onto `document.body` so it renders in
+ * true document coordinates and is never clipped by a section's own `overflow`/height
+ * (which happens once its `top` needs to sit outside the Invitation section's box,
+ * while scrolling through Events/RSVP). See useFixedGreenBg for the positioning logic.
  */
 export default function GreenBgLayer({
-  fixed,
+  top,
   size,
 }: {
-  fixed: boolean;
+  top: number;
   size: { width: number; height: number } | null;
 }) {
-  if (!size) return null;
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
-  return (
+  if (!mounted || !size) return null;
+
+  return createPortal(
     <div
       aria-hidden
       style={{
-        position: fixed ? "fixed" : "absolute",
-        top: 0,
+        position: "absolute",
+        top,
         left: "50%",
         transform: "translateX(-50%)",
         width: size.width,
@@ -31,6 +37,7 @@ export default function GreenBgLayer({
         zIndex: -1,
         pointerEvents: "none",
       }}
-    />
+    />,
+    document.body
   );
 }

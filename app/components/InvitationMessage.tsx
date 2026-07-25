@@ -5,10 +5,10 @@ import { useFixedGreenBg } from "./hooks/useFixedGreenBg";
 import GreenBgLayer from "./ui/GreenBgLayer";
 
 export default function InvitationMessage() {
-  const { fixed, size } = useFixedGreenBg();
+  const { top, size } = useFixedGreenBg();
   return (
-    <section id="invitation" className="relative isolate h-[100dvh] flex flex-col justify-center items-center overflow-hidden py-[clamp(3rem,18dvh,10rem)] px-6">
-      <GreenBgLayer fixed={fixed} size={size} />
+    <section id="invitation" className="h-[100dvh] flex flex-col justify-center items-center overflow-hidden py-[clamp(3rem,18dvh,10rem)] px-6">
+      <GreenBgLayer top={top} size={size} />
       <div className="max-w-2xl mx-auto text-center flex flex-col items-center gap-[clamp(0.9rem,4dvh,2.5rem)] rounded-2xl px-6 py-10 sm:px-10"
         style={{ background: "rgba(255,255,255,0.08)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", border: "1px solid rgba(255,249,243,0.15)" }}>
 
