@@ -53,7 +53,7 @@ export default function SaveTheDateSection() {
   }, []);
 
   return (
-    <section className="relative overflow-hidden" style={{ minHeight: "100svh", width: "100%", scrollSnapAlign: "start", scrollSnapStop: "always" }}>
+    <section className="relative overflow-hidden" style={{ minHeight: "100svh", width: "100%", scrollSnapAlign: "start" }}>
       <video
         ref={videoRef}
         src="/assets/bg%20video%203%20-%20card.mp4"

@@ -1,9 +1,12 @@
 /**
  * Wraps Save-the-Date / Story / Invitation in their own nested scroll container with
- * mandatory scroll-snap: any scroll gesture lands squarely on the next section, one at
- * a time (scroll-snap-stop: always prevents a fast fling from skipping a section).
- * This also works around the Android "jumpy" scroll caused by `dvh` recalculating
- * mid-scroll — snapping forces a clean rest position every time.
+ * mandatory scroll-snap: a scroll gesture lands on the nearest section. (Each section
+ * used to also set scroll-snap-stop: always to force stopping at every section one at
+ * a time, but that combination is known to "trap" scrolling on some mobile browsers —
+ * a backward swipe off the last section could get pulled right back instead of
+ * registering — so it's mandatory-only now.) This also works around the Android
+ * "jumpy" scroll caused by `dvh` recalculating mid-scroll — snapping forces a clean
+ * rest position every time.
  *
  * Once the user reaches the bottom of this container (end of Invitation), the scroll
  * gesture chains naturally into the outer page for Events/RSVP, which stay in normal
