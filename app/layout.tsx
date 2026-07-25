@@ -42,7 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Mobile-width container — centred on desktop, full-width on mobile */}
         <div
           className="relative mx-auto overflow-x-hidden w-full md:max-w-[430px]"
-          style={{ minHeight: "100dvh", backgroundColor: "#1f2519" }}
+          style={{ minHeight: "100svh", backgroundColor: "#1f2519" }}
         >
           {children}
         </div>

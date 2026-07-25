@@ -39,7 +39,7 @@ export default function FallingFlowers() {
   return (
     <div
       className="fixed inset-0 mx-auto overflow-hidden pointer-events-none z-[60] w-full md:max-w-[430px]"
-      style={{ height: "100dvh" }}
+      style={{ height: "100svh" }}
       aria-hidden="true"
     >
       {FLOWERS.map((f) => (

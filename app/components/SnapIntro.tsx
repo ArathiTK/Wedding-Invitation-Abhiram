@@ -14,7 +14,7 @@ export default function SnapIntro({ children }: { children: React.ReactNode }) {
   return (
     <div
       id="snap-intro"
-      className="h-[100dvh] overflow-y-scroll"
+      className="h-[100svh] overflow-y-scroll"
       style={{ scrollSnapType: "y mandatory", WebkitOverflowScrolling: "touch" }}
     >
       {children}

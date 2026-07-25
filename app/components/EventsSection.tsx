@@ -44,7 +44,7 @@ export default function EventsSection() {
   ];
 
   return (
-    <section id="events" className="h-[100dvh] flex flex-col justify-center items-center overflow-y-auto py-[clamp(1.5rem,5vh,2.5rem)] px-6">
+    <section id="events" className="h-[100svh] flex flex-col justify-center items-center overflow-y-auto py-[clamp(1.5rem,5vh,2.5rem)] px-6">
       <ElasticReveal className="max-w-xl mx-auto w-full rounded-2xl px-4 pt-[clamp(2rem,6vh,3.5rem)] pb-6 sm:px-6"
         style={{ background: "rgba(255,255,255,0.08)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", border: "1px solid rgba(255,249,243,0.15)" }}>
         <AnimateOnScroll>

@@ -27,7 +27,7 @@ export default function RSVPForm() {
 
   if (submitted) {
     return (
-      <section id="rsvp" className="h-[100dvh] flex flex-col justify-center overflow-y-auto py-10 px-6">
+      <section id="rsvp" className="h-[100svh] flex flex-col justify-center overflow-y-auto py-10 px-6">
         <div className="max-w-3xl mx-auto w-full text-center">
           <ElasticReveal className="gold-border-card rounded-lg p-12"
             style={{ background: "rgba(255,255,255,0.08)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", border: "1px solid rgba(255,249,243,0.15)" }}>
@@ -47,7 +47,7 @@ export default function RSVPForm() {
   }
 
   return (
-    <section id="rsvp" className="h-[100dvh] flex flex-col justify-center overflow-y-auto py-[clamp(1.5rem,5vh,2.5rem)] px-6">
+    <section id="rsvp" className="h-[100svh] flex flex-col justify-center overflow-y-auto py-[clamp(1.5rem,5vh,2.5rem)] px-6">
       <ElasticReveal className="max-w-3xl mx-auto w-full rounded-2xl px-6 py-8 md:px-8"
         style={{ background: "rgba(255,255,255,0.08)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", border: "1px solid rgba(255,249,243,0.15)" }}>
         <AnimateOnScroll>
