@@ -17,8 +17,6 @@ export const viewport: Viewport = {
   userScalable: false,
 };
 
-import type { Metadata } from "next";
-
 const siteTitle =
   process.env.NEXT_PUBLIC_SITE_TITLE ||
   "Abhiram TK & Athira K — Wedding Invitation";
