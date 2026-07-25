@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import AnimateOnScroll from "./ui/AnimateOnScroll";
+import ElasticReveal from "./ui/ElasticReveal";
 import { submitRSVP, type RSVPData } from "@/lib/api";
 import { WEDDING } from "@/lib/constants";
 
@@ -28,7 +29,7 @@ export default function RSVPForm() {
     return (
       <section id="rsvp" className="h-[100dvh] flex flex-col justify-center overflow-y-auto py-10 px-6">
         <div className="max-w-3xl mx-auto w-full text-center">
-          <div className="gold-border-card rounded-lg p-12"
+          <ElasticReveal className="gold-border-card rounded-lg p-12"
             style={{ background: "rgba(255,255,255,0.08)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", border: "1px solid rgba(255,249,243,0.15)" }}>
             <div className="flex justify-center mb-6">
               <div className="w-14 h-14 rounded-full border-2 border-[#fff9f3] flex items-center justify-center">
@@ -39,7 +40,7 @@ export default function RSVPForm() {
             </div>
             <h3 className="text-2xl heading-gold heading-display mb-3" style={{ color: "#fff9f3" }}>Thank You!</h3>
             <p className="text-[#fff9f3]/60 text-sm leading-relaxed">Your RSVP has been received. We look forward to celebrating with you.</p>
-          </div>
+          </ElasticReveal>
         </div>
       </section>
     );
@@ -47,7 +48,7 @@ export default function RSVPForm() {
 
   return (
     <section id="rsvp" className="h-[100dvh] flex flex-col justify-center overflow-y-auto py-[clamp(1.5rem,5vh,2.5rem)] px-6">
-      <div className="max-w-3xl mx-auto w-full rounded-2xl px-6 py-8 md:px-8"
+      <ElasticReveal className="max-w-3xl mx-auto w-full rounded-2xl px-6 py-8 md:px-8"
         style={{ background: "rgba(255,255,255,0.08)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", border: "1px solid rgba(255,249,243,0.15)" }}>
         <AnimateOnScroll>
           <p className="heading-display text-xs text-[#fff9f3] text-center mb-[clamp(0.5rem,2vh,0.75rem)]">RSVP</p>
@@ -115,7 +116,7 @@ export default function RSVPForm() {
             </div>
           </div>
         </AnimateOnScroll>
-      </div>
+      </ElasticReveal>
     </section>
   );
 }

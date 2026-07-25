@@ -54,7 +54,7 @@ export default function VideoBgSection() {
   }, []);
 
   return (
-    <section id="our-story" className="relative h-[100dvh] overflow-hidden flex flex-col justify-start px-8 pt-[12vh]">
+    <section id="our-story" className="relative h-[100dvh] overflow-hidden flex flex-col justify-start px-8 pt-[12vh]" style={{ scrollSnapAlign: "start", scrollSnapStop: "always" }}>
       <video
         ref={videoRef}
         src="/assets/walking%20video%203.mp4"

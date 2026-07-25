@@ -1,4 +1,5 @@
 import PageWrapper from "./components/PageWrapper";
+import SnapIntro from "./components/SnapIntro";
 import SaveTheDateSection from "./components/SaveTheDateSection";
 import VideoBgSection from "./components/VideoBgSection";
 import InvitationMessage from "./components/InvitationMessage";
@@ -9,9 +10,11 @@ export default function Page() {
   return (
     <PageWrapper>
       <main>
-        <SaveTheDateSection />
-        <VideoBgSection />
-        <InvitationMessage />
+        <SnapIntro>
+          <SaveTheDateSection />
+          <VideoBgSection />
+          <InvitationMessage />
+        </SnapIntro>
         <EventsSection />
         <RSVPForm />
       </main>
