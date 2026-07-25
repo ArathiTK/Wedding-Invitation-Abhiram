@@ -43,7 +43,7 @@ export default function InvitationMessage() {
         <AnimateOnScroll delay={0.3}>
           <h2 className="heading-gold heading-display leading-tight"
             style={{ fontSize: "clamp(1.25rem, 5vw, 1.75rem)", letterSpacing: "0.1em", color: "#fff9f3" }}>
-            Abhiram TK
+            Athira K
           </h2>
           <div className="mx-auto my-0" style={{
             width: 110, height: 62,
@@ -56,7 +56,7 @@ export default function InvitationMessage() {
           }} />
           <h2 className="heading-gold heading-display leading-tight"
             style={{ fontSize: "clamp(1.25rem, 5vw, 1.75rem)", letterSpacing: "0.1em", color: "#fff9f3" }}>
-            Athira K
+            Abhiram TK
           </h2>
         </AnimateOnScroll>
 
