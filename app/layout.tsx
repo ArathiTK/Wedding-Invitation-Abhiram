@@ -17,21 +17,33 @@ export const viewport: Viewport = {
   userScalable: false,
 };
 
+import type { Metadata } from "next";
+
+const siteTitle =
+  process.env.NEXT_PUBLIC_SITE_TITLE ||
+  "Abhiram TK & Athira K — Wedding Invitation";
+
+const siteDescription =
+  process.env.NEXT_PUBLIC_SITE_DESCRIPTION ||
+  "Join us to celebrate the wedding of Abhiram TK & Athira K";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://wedding-invitation-abhiram.vercel.app"),
-  title: process.env.NEXT_PUBLIC_SITE_TITLE || "Abhiram TK & Athira K — Wedding Invitation",
-  description:
-    "Join us to celebrate the wedding of Abhiram TK & Athira K",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ||
+      "https://wedding-invitation-abhiram-athira.vercel.app"
+  ),
+  title: siteTitle,
+  description: siteDescription,
   openGraph: {
-    title: process.env.NEXT_PUBLIC_SITE_TITLE || "Abhiram TK & Athira K — Wedding Invitation",
-    description: "Join us to celebrate the wedding of Abhiram TK & Athira K.",
+    title: siteTitle,
+    description: siteDescription,
     type: "website",
     images: [{ url: "/assets/og-image.png?v=2", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
-    title: process.env.NEXT_PUBLIC_SITE_TITLE || "Abhiram TK & Athira K — Wedding Invitation",
-    description: "Join us to celebrate the wedding of Abhiram TK & Athira K.",
+    title: siteTitle,
+    description: siteDescription,
   },
 };
 
