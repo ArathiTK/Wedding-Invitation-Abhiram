@@ -91,12 +91,17 @@ export default function GlassPager({ pages }: { pages: React.ReactNode[] }) {
     function onTouchMove(e: TouchEvent) {
       if (touchYRef.current == null) return;
       const dy = touchYRef.current - e.touches[0].clientY;
+      const dir = dy > 0 ? 1 : -1;
+      // Let a downward pull at the very first page fall through to the browser's
+      // native pull-to-refresh instead of hijacking it — there's nowhere to step
+      // back to anyway.
+      if (indexRef.current === 0 && dir === -1) return;
       if (Math.abs(dy) < TOUCH_THRESHOLD) {
         e.preventDefault();
         return;
       }
       e.preventDefault();
-      step(dy > 0 ? 1 : -1);
+      step(dir);
       touchYRef.current = e.touches[0].clientY;
     }
 
