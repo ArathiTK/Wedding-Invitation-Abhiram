@@ -46,6 +46,26 @@ function doPost(e) {
     declined,
   ]);
 
+  sendNotificationEmail(name, guests, wedding, reception, declined);
+
   return ContentService.createTextOutput(JSON.stringify({ success: true, message: "RSVP received! Thank you." }))
     .setMimeType(ContentService.MimeType.JSON);
+}
+
+function sendNotificationEmail(name, guests, wedding, reception, declined) {
+  const events = declined === "Yes"
+    ? "Declined"
+    : [wedding === "Yes" ? "Wedding" : null, reception === "Yes" ? "Reception" : null]
+        .filter(Boolean)
+        .join(" & ");
+
+  const body = [
+    "New RSVP received:",
+    "",
+    "Name: " + name,
+    "Number of guests: " + guests,
+    "Attending: " + events,
+  ].join("\n");
+
+  MailApp.sendEmail("tkabhiram36@gmail.com", "New RSVP: " + name, body);
 }
