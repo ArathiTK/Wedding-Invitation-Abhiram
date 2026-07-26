@@ -12,7 +12,7 @@ export default async function Image() {
   );
 
   const fileName = isAthiraFirst
-    ? "og-image _Athira.png"
+    ? "og-image _Athira2.png"
     : "og-image_Abhiram.png";
 
   const data = await readFile(
