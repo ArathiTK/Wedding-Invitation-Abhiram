@@ -4,7 +4,7 @@ import AnimateOnScroll from "./ui/AnimateOnScroll";
 export default function InvitationMessage() {
   return (
     <section id="invitation" className="h-[100svh] flex flex-col justify-center items-center overflow-hidden py-[clamp(3rem,18dvh,10rem)] px-6">
-      <div className="max-w-2xl mx-auto text-center flex flex-col items-center gap-[clamp(0.5rem,2dvh,1.25rem)] rounded-2xl px-6 pt-[clamp(1.5rem,5dvh,2.5rem)] pb-[clamp(2.25rem,7dvh,3.5rem)] sm:px-10"
+      <div className="max-w-2xl w-full mx-auto text-center flex flex-col items-center gap-[clamp(0.5rem,2dvh,1.25rem)] rounded-2xl px-6 pt-[clamp(1.5rem,5dvh,2.5rem)] pb-[clamp(2.25rem,7dvh,3.5rem)] sm:px-10"
         style={{ background: "rgba(255,255,255,0.08)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", border: "1px solid rgba(255,249,243,0.15)" }}>
 
         {/* 1. Ganesh icon */}
@@ -42,7 +42,7 @@ export default function InvitationMessage() {
         {/* 5. Names */}
         <AnimateOnScroll delay={0.3}>
           <h2 className="heading-gold heading-display leading-tight"
-            style={{ fontSize: "clamp(1.25rem, 5vw, 1.75rem)", letterSpacing: "0.1em", color: "#fff9f3" }}>
+            style={{ fontSize: "clamp(1.25rem, 6vw, 2rem)", letterSpacing: "0.1em", color: "#fff9f3" }}>
             Athira K
           </h2>
           <div className="mx-auto my-0" style={{
@@ -55,7 +55,7 @@ export default function InvitationMessage() {
             WebkitMaskPosition: "center", maskPosition: "center",
           }} />
           <h2 className="heading-gold heading-display leading-tight"
-            style={{ fontSize: "clamp(1.25rem, 5vw, 1.75rem)", letterSpacing: "0.1em", color: "#fff9f3" }}>
+            style={{ fontSize: "clamp(1.25rem, 6vw, 2rem)", letterSpacing: "0.1em", color: "#fff9f3" }}>
             Abhiram TK
           </h2>
         </AnimateOnScroll>
