@@ -9,6 +9,20 @@ const inputClass = "w-full px-0 pt-0 pb-1 bg-transparent border-0 border-b borde
 const numberInputClass = inputClass + " [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none";
 const labelClass = "block heading-display text-xs text-[#fff9f3] mb-0.5";
 
+const isWeddingOnly = process.env.NEXT_PUBLIC_INVITE_TYPE === "wedding-only";
+
+const attendanceOptions = isWeddingOnly
+  ? [
+      { value: "wedding-only", label: "Joyfully Accept" },
+      { value: "wedding-only-decline", label: "Regretfully Decline" },
+    ]
+  : [
+      { value: "both", label: "Wedding & Reception" },
+      { value: "ceremony", label: "Wedding Only" },
+      { value: "reception", label: "Reception Only" },
+      { value: "decline", label: "Regretfully Decline" },
+    ];
+
 export default function RSVPForm() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -76,12 +90,7 @@ export default function RSVPForm() {
               <div>
                 <label className={labelClass}>Are You Attending? *</label>
                 <div className="flex flex-col gap-2">
-                  {[
-                    { value: "both", label: "Wedding & Reception" },
-                    { value: "ceremony", label: "Wedding Only" },
-                    { value: "reception", label: "Reception Only" },
-                    { value: "decline", label: "Regretfully Decline" },
-                  ].map(({ value, label }) => (
+                  {attendanceOptions.map(({ value, label }) => (
                     <label key={value} className="flex items-center gap-3 text-[#fff9f3] text-sm cursor-pointer">
                       <input type="radio" value={value} className="appearance-none w-3 h-3 rounded-full border border-[#fff9f3] checked:bg-[#fff9f3] cursor-pointer transition-colors"
                         {...register("attendance", { required: "Please select an option" })} />
