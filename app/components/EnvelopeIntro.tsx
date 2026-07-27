@@ -94,10 +94,12 @@ export default function EnvelopeIntro({ onOpen, onTap, onVideoEnd }: Props) {
           transition={{ repeat: Infinity, duration: 2.4, ease: "easeInOut" }}
           style={{
             fontFamily: "var(--font-cormorant)",
-            fontSize: "0.65rem",
-            letterSpacing: "0.28em",
+            fontSize: "0.85rem",
+            fontWeight: 600,
+            letterSpacing: "0.3em",
             textTransform: "uppercase",
             color: "#1f1710",
+            textShadow: "0 1px 3px rgba(255,255,255,0.5), 0 0 12px rgba(255,255,255,0.35)",
           }}
         >
           Tap to open
