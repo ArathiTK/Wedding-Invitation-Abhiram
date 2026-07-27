@@ -27,11 +27,13 @@ export default function RSVPForm() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
-  const { register, handleSubmit, formState: { errors } } = useForm<RSVPData>();
+  const { register, handleSubmit, watch, formState: { errors } } = useForm<RSVPData>();
+  const attendance = watch("attendance");
+  const isDeclining = attendance === "decline" || attendance === "wedding-only-decline";
 
   async function onSubmit(data: RSVPData) {
     setSubmitting(true); setError("");
-    try { await submitRSVP(data); setSubmitted(true); }
+    try { await submitRSVP({ ...data, guestCount: data.guestCount || 0 }); setSubmitted(true); }
     catch (e) { setError(e instanceof Error ? e.message : "Something went wrong."); }
     finally { setSubmitting(false); }
   }
@@ -82,9 +84,14 @@ export default function RSVPForm() {
                 {errors.name && <p className="text-red-400 text-xs mt-1">{errors.name.message}</p>}
               </div>
               <div>
-                <label className={labelClass}>Total Number of Guests *</label>
+                <label className={labelClass}>Total Number of Guests {isDeclining ? "" : "*"}</label>
                 <input type="number" min={1} max={20} placeholder="Including yourself" className={numberInputClass}
-                  {...register("guestCount", { required: "Please enter the number of guests", min: { value: 1, message: "At least 1 guest" }, max: { value: 20, message: "Maximum 20 guests" }, valueAsNumber: true })} />
+                  {...register("guestCount", {
+                    required: isDeclining ? false : "Please enter the number of guests",
+                    min: isDeclining ? undefined : { value: 1, message: "At least 1 guest" },
+                    max: { value: 20, message: "Maximum 20 guests" },
+                    valueAsNumber: true,
+                  })} />
                 {errors.guestCount && <p className="text-red-400 text-xs mt-1">{errors.guestCount.message}</p>}
               </div>
               <div>
