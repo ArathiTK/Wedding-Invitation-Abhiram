@@ -36,8 +36,9 @@ export default function RSVPForm() {
 
   async function onSubmit(data: Omit<RSVPData, "attendance">) {
     if (attendance.length === 0) { setAttendanceError("Please select an option"); return; }
+    const isDecline = attendance.includes("decline");
     setSubmitting(true); setError("");
-    try { await submitRSVP({ ...data, attendance }); setSubmitted(true); }
+    try { await submitRSVP({ ...data, guestCount: isDecline ? 0 : data.guestCount, attendance }); setSubmitted(true); }
     catch (e) { setError(e instanceof Error ? e.message : "Something went wrong."); }
     finally { setSubmitting(false); }
   }
@@ -89,8 +90,16 @@ export default function RSVPForm() {
               </div>
               <div>
                 <label className={labelClass}>Total Number of Guests *</label>
-                <input type="number" min={1} max={20} placeholder="Including yourself" className={numberInputClass}
-                  {...register("guestCount", { required: "Please enter the number of guests", min: { value: 1, message: "At least 1 guest" }, max: { value: 20, message: "Maximum 20 guests" }, valueAsNumber: true })} />
+                <input type="number" min={0} max={20} placeholder="Including yourself" className={numberInputClass}
+                  {...register("guestCount", {
+                    valueAsNumber: true,
+                    validate: (v) => {
+                      if (attendance.includes("decline")) return true;
+                      if (v === undefined || Number.isNaN(v) || v < 1) return "Please enter the number of guests";
+                      if (v > 20) return "Maximum 20 guests";
+                      return true;
+                    },
+                  })} />
                 {errors.guestCount && <p className="text-red-400 text-xs mt-1">{errors.guestCount.message}</p>}
               </div>
               <div>
