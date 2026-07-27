@@ -30,7 +30,12 @@ export default function PageWrapper({ children }: { children: React.ReactNode })
     frameRef.current = requestAnimationFrame(tick);
   }
 
-  // Step 1 — unlock audio inside the tap gesture (iOS requires this)
+  // Step 1 — unlock audio inside the tap gesture (iOS requires this).
+  // IMPORTANT: this call must stay synchronous with the "Tap to open" click/touch
+  // handler (no awaits/timers before it) — browsers only allow audio.play() without
+  // a rejected promise when it's invoked directly inside a user gesture. Starting it
+  // here (muted) means background audio begins loading/playing the instant the user
+  // taps, in parallel with the envelope video, rather than waiting for the video to end.
   function handleTap() {
     const audio = audioRef.current;
     if (!audio) return;
@@ -93,7 +98,13 @@ export default function PageWrapper({ children }: { children: React.ReactNode })
   return (
     <IntroContext.Provider value={{ opened }}>
       <div className="relative">
-        <audio ref={audioRef} src={TRACK} loop preload="auto" aria-hidden="true" />
+        {/*
+          preload="none": this 15MB track must not compete with the envelope video's
+          bandwidth on first paint. It only needs to be fetched once the guest taps —
+          handleTap() calls audio.play() synchronously inside that gesture, which is
+          what actually triggers the browser to start downloading/playing it.
+        */}
+        <audio ref={audioRef} src={TRACK} loop preload="none" aria-hidden="true" />
         <AnimatePresence>
           {!opened && (
             <EnvelopeIntro

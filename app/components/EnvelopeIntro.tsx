@@ -66,6 +66,11 @@ export default function EnvelopeIntro({ onOpen, onTap, onVideoEnd }: Props) {
         muted
         playsInline
         preload="auto"
+        // Highest-priority asset on the page — this is the very first frame the
+        // guest sees, so it must win the network race against every other video/audio.
+        // @ts-expect-error fetchPriority isn't in the TS DOM lib yet
+        fetchpriority="high"
+        poster="/assets/poster-envelope.jpg"
         onEnded={handleEnd}
         onError={handleEnd}
         onTimeUpdate={() => {

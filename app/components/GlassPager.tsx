@@ -143,7 +143,7 @@ export default function GlassPager({ pages }: { pages: React.ReactNode[] }) {
           transform: "translateX(-50%)",
           width: size.width,
           height: size.height,
-          backgroundImage: "url('/assets/BG%20jasmine.png')",
+          backgroundImage: "url('/assets/bg-jasmine.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundColor: "#414b3b",

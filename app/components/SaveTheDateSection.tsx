@@ -10,7 +10,10 @@ export default function SaveTheDateSection() {
 
   useEffect(() => {
     const v = videoRef.current;
-    if (!v) return;
+    // Stay unbuffered behind the envelope overlay — only start pulling this video's
+    // bytes once the envelope is opened, so it doesn't compete for bandwidth with the
+    // envelope video during the critical first paint.
+    if (!v || !opened) return;
 
     // load() only once — buffers the video without discarding progress on retry
     v.load();
@@ -50,7 +53,7 @@ export default function SaveTheDateSection() {
       document.removeEventListener("click", onGesture);
       document.removeEventListener("section2ready", onSection2Ready);
     };
-  }, []);
+  }, [opened]);
 
   return (
     <section className="relative overflow-hidden" style={{ minHeight: "100svh", width: "100%" }}>
@@ -61,7 +64,8 @@ export default function SaveTheDateSection() {
         loop
         muted
         playsInline
-        preload="auto"
+        preload={opened ? "auto" : "none"}
+        poster="/assets/poster-card.jpg"
         className="absolute inset-0 w-full h-full object-cover pointer-events-none"
         suppressHydrationWarning
       />

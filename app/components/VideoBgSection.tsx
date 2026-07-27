@@ -1,13 +1,17 @@
 "use client";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { useIntro } from "@/app/context/IntroContext";
 
 export default function VideoBgSection() {
+  const { opened } = useIntro();
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const v = videoRef.current;
-    if (!v) return;
+    // Hold off buffering until the envelope is opened so this video isn't racing
+    // the envelope video for bandwidth during the critical first paint.
+    if (!v || !opened) return;
 
     // load() only once — buffers the video without discarding progress on retry
     v.load();
@@ -52,7 +56,7 @@ export default function VideoBgSection() {
       document.removeEventListener("touchstart", onGesture);
       document.removeEventListener("click", onGesture);
     };
-  }, []);
+  }, [opened]);
 
   return (
     <section id="our-story" className="relative h-[100svh] overflow-hidden flex flex-col justify-start px-8 pt-[12vh]">
@@ -64,7 +68,8 @@ export default function VideoBgSection() {
         muted
         playsInline
         webkit-playsinline="true"
-        preload="auto"
+        preload={opened ? "auto" : "none"}
+        poster="/assets/poster-walking.jpg"
         className="absolute inset-0 w-full h-full object-cover pointer-events-none"
         onCanPlay={e => { (e.target as HTMLVideoElement).playbackRate = 0.5; }}
         suppressHydrationWarning
