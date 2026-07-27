@@ -5,7 +5,7 @@ export async function POST(req: NextRequest) {
     const data = await req.json();
     const { name, attendance } = data;
 
-    if (!name || !attendance) {
+    if (!name || !Array.isArray(attendance) || attendance.length === 0) {
       return NextResponse.json({ message: "Missing required fields" }, { status: 400 });
     }
 

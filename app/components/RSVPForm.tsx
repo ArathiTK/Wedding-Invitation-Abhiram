@@ -8,15 +8,36 @@ const inputClass = "w-full px-0 pt-0 pb-1 bg-transparent border-0 border-b borde
 const numberInputClass = inputClass + " [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none";
 const labelClass = "block heading-display text-xs text-[#fff9f3] mb-0.5";
 
+const ATTENDANCE_OPTIONS = [
+  { value: "preWeddingReception", label: "Pre-Wedding Reception" },
+  { value: "ceremony", label: "Wedding Ceremony" },
+  { value: "reception", label: "Reception" },
+  { value: "decline", label: "Regretfully Decline" },
+];
+
 export default function RSVPForm() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
-  const { register, handleSubmit, formState: { errors } } = useForm<RSVPData>();
+  const [attendance, setAttendance] = useState<string[]>([]);
+  const [attendanceError, setAttendanceError] = useState("");
+  const { register, handleSubmit, formState: { errors } } = useForm<Omit<RSVPData, "attendance">>();
 
-  async function onSubmit(data: RSVPData) {
+  function toggleAttendance(value: string) {
+    setAttendanceError("");
+    setAttendance((prev) => {
+      if (value === "decline") return prev.includes("decline") ? [] : ["decline"];
+      const withoutDecline = prev.filter((v) => v !== "decline");
+      return withoutDecline.includes(value)
+        ? withoutDecline.filter((v) => v !== value)
+        : [...withoutDecline, value];
+    });
+  }
+
+  async function onSubmit(data: Omit<RSVPData, "attendance">) {
+    if (attendance.length === 0) { setAttendanceError("Please select an option"); return; }
     setSubmitting(true); setError("");
-    try { await submitRSVP(data); setSubmitted(true); }
+    try { await submitRSVP({ ...data, attendance }); setSubmitted(true); }
     catch (e) { setError(e instanceof Error ? e.message : "Something went wrong."); }
     finally { setSubmitting(false); }
   }
@@ -74,21 +95,25 @@ export default function RSVPForm() {
               </div>
               <div>
                 <label className={labelClass}>Are You Attending? *</label>
+                <p className="text-[#fff9f3]/50 text-xs mb-2">Select all events you&apos;ll be joining</p>
                 <div className="flex flex-col gap-2">
-                  {[
-                    { value: "both", label: "Wedding & Reception" },
-                    { value: "ceremony", label: "Wedding Only" },
-                    { value: "reception", label: "Reception Only" },
-                    { value: "decline", label: "Regretfully Decline" },
-                  ].map(({ value, label }) => (
-                    <label key={value} className="flex items-center gap-3 text-[#fff9f3] text-sm cursor-pointer">
-                      <input type="radio" value={value} className="appearance-none w-3 h-3 rounded-full border border-[#fff9f3] checked:bg-[#fff9f3] cursor-pointer transition-colors"
-                        {...register("attendance", { required: "Please select an option" })} />
-                      {label}
-                    </label>
-                  ))}
+                  {ATTENDANCE_OPTIONS.map(({ value, label }) => {
+                    const isDecline = value === "decline";
+                    const checked = attendance.includes(value);
+                    const disabled = isDecline
+                      ? attendance.length > 0 && !checked
+                      : attendance.includes("decline");
+                    return (
+                      <label key={value} className={`flex items-center gap-3 text-[#fff9f3] text-sm ${disabled ? "opacity-40 cursor-not-allowed" : "cursor-pointer"}`}>
+                        <input type="checkbox" checked={checked} disabled={disabled}
+                          onChange={() => toggleAttendance(value)}
+                          className="appearance-none w-3 h-3 rounded-sm border border-[#fff9f3] checked:bg-[#fff9f3] cursor-pointer transition-colors disabled:cursor-not-allowed" />
+                        {label}
+                      </label>
+                    );
+                  })}
                 </div>
-                {errors.attendance && <p className="text-red-400 text-xs mt-1">{errors.attendance.message}</p>}
+                {attendanceError && <p className="text-red-400 text-xs mt-1">{attendanceError}</p>}
               </div>
               {error && <p className="text-red-400 text-sm text-center">{error}</p>}
               <div className="flex justify-center">
