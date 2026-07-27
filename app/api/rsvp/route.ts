@@ -4,6 +4,7 @@ const ATTENDANCE_CODES: Record<string, string> = {
   "Pre-Wedding, Wedding & Reception": "all-events",
   "Pre-Wedding & Wedding": "pre-wedding-wedding",
   "Wedding & Reception": "wedding-reception",
+  "Pre-Wedding & Reception": "pre-wedding-reception",
   "Pre-Wedding Only": "pre-wedding-only",
   "Wedding Only": "wedding-only",
   "Reception Only": "reception-only",
@@ -20,6 +21,7 @@ function resolveAttendanceLabel(selections: string[]): string {
   if (hasPreWedding && hasWedding && hasReception) return "Pre-Wedding, Wedding & Reception";
   if (hasPreWedding && hasWedding) return "Pre-Wedding & Wedding";
   if (hasWedding && hasReception) return "Wedding & Reception";
+  if (hasPreWedding && hasReception) return "Pre-Wedding & Reception";
   if (hasPreWedding) return "Pre-Wedding Only";
   if (hasWedding) return "Wedding Only";
   if (hasReception) return "Reception Only";
