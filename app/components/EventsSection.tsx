@@ -70,7 +70,7 @@ export default function EventsSection() {
                   style={{ fontSize: "clamp(1rem, 4vw, 1.3rem)", letterSpacing: "0.08em", color: "#fff9f3" }}>
                   {name}
                 </h3>
-                <div className="flex items-center justify-center flex-wrap mb-[clamp(0.2rem,1vh,0.35rem)]" style={{ columnGap: "clamp(0.6rem,3vw,1.5rem)", rowGap: "0.2rem" }}>
+                <div className="flex flex-col items-center gap-1 mb-[clamp(0.2rem,1vh,0.35rem)]">
                   <span className="flex items-center gap-1.5">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="flex-shrink-0">
                       <rect x="3" y="5" width="18" height="16" rx="2" stroke="#fff9f3" strokeWidth="1.5"/>
