@@ -8,6 +8,32 @@ const inputClass = "w-full px-0 pt-0 pb-1 bg-transparent border-0 border-b borde
 const numberInputClass = inputClass + " [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none";
 const labelClass = "block heading-display text-xs text-[#fff9f3] mb-0.5";
 
+const MAILTO_HREF = `mailto:invitations.vivah@gmail.com?subject=${encodeURIComponent(
+  "Inquiry for Custom Digital Invitation"
+)}&body=${encodeURIComponent(
+  "Hi,\n\nI came across your digital invitations and loved your work! I would like to get a custom invitation made for an upcoming celebration. Please let me know your availability, pricing, and how we can get started.\n\nBest regards"
+)}`;
+
+function CraftedByFooter() {
+  return (
+    <div className="absolute bottom-0 inset-x-0 pt-10 pb-4 text-center pointer-events-none">
+      <div
+        className="absolute inset-x-0 bottom-0 h-28 pointer-events-none"
+        style={{ background: "linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 45%, transparent 100%)" }}
+      />
+      <p className="relative text-[#fff9f3]/50 text-xs tracking-wide pointer-events-auto">
+        crafted with love by{" "}
+        <a
+          href={MAILTO_HREF}
+          className="text-[#fff9f3]/70 underline underline-offset-2 hover:text-[#fff9f3] transition-colors"
+        >
+          invitations.vivah@gmail.com
+        </a>
+      </p>
+    </div>
+  );
+}
+
 const ATTENDANCE_OPTIONS = [
   { value: "preWeddingReception", label: "Pre-Wedding Reception" },
   { value: "ceremony", label: "Wedding Ceremony" },
@@ -45,7 +71,7 @@ export default function RSVPForm() {
 
   if (submitted) {
     return (
-      <section id="rsvp" className="h-[100svh] flex flex-col justify-center overflow-y-auto py-10 px-6">
+      <section id="rsvp" className="relative h-[100svh] flex flex-col justify-center overflow-y-auto py-10 px-6">
         <div className="max-w-3xl mx-auto w-full text-center">
           <div className="gold-border-card rounded-lg p-12"
             style={{ background: "rgba(255,255,255,0.08)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", border: "1px solid rgba(255,249,243,0.15)" }}>
@@ -60,12 +86,13 @@ export default function RSVPForm() {
             <p className="text-[#fff9f3]/60 text-sm leading-relaxed">Your RSVP has been received. We look forward to celebrating with you.</p>
           </div>
         </div>
+        <CraftedByFooter />
       </section>
     );
   }
 
   return (
-    <section id="rsvp" className="h-[100svh] flex flex-col justify-center overflow-y-auto py-[clamp(1.5rem,5vh,2.5rem)] px-6">
+    <section id="rsvp" className="relative h-[100svh] flex flex-col justify-center overflow-y-auto py-[clamp(1.5rem,5vh,2.5rem)] px-6">
       <div className="max-w-3xl mx-auto w-full rounded-2xl px-6 py-8 md:px-8"
         style={{ background: "rgba(255,255,255,0.08)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", border: "1px solid rgba(255,249,243,0.15)" }}>
         <AnimateOnScroll>
@@ -136,6 +163,7 @@ export default function RSVPForm() {
           </div>
         </AnimateOnScroll>
       </div>
+      <CraftedByFooter />
     </section>
   );
 }
