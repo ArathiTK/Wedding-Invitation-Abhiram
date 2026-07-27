@@ -5,6 +5,24 @@ import { WEDDING, makeGoogleCalendarUrl } from "@/lib/constants";
 export default function EventsSection() {
   const events = [
     {
+      name: "Pre-Wedding Reception",
+      date: WEDDING.preWeddingReception.date,
+      time: WEDDING.preWeddingReception.time,
+      venue: WEDDING.preWeddingReception.venue,
+      address: WEDDING.preWeddingReception.address,
+      cardBg: "url('/assets/bg.png')",
+      cardBgPosition: "center",
+      googleMapsUrl: WEDDING.preWeddingReception.googleMapsUrl,
+      calUrl: makeGoogleCalendarUrl({
+        title: "Abhiram TK & Athira K — Pre-Wedding Reception",
+        isoDate: WEDDING.preWeddingReception.isoDate,
+        startTime: WEDDING.preWeddingReception.startTime,
+        endTime: WEDDING.preWeddingReception.endTime,
+        venue: WEDDING.preWeddingReception.venue,
+        address: WEDDING.preWeddingReception.address,
+      }),
+    },
+    {
       name: "Wedding Ceremony",
       date: WEDDING.ceremony.date,
       time: WEDDING.ceremony.time,
@@ -50,58 +68,43 @@ export default function EventsSection() {
           <p className="heading-display text-xs text-[#fff9f3] text-center mb-[clamp(0.5rem,2vh,0.75rem)]">Events</p>
         </AnimateOnScroll>
 
-        <div className="flex flex-col gap-[clamp(0.5rem,2vh,1rem)]">
-          {events.map(({ name, date, time, venue, address, cardBg, cardBgPosition, googleMapsUrl }, i) => (
+        <div className="flex flex-col gap-[clamp(0.4rem,1.5vh,0.75rem)]">
+          {events.map(({ name, date, time, venue, address, googleMapsUrl }, i) => (
             <AnimateOnScroll key={name} delay={0.1 + i * 0.1}>
-              <div className="rounded-lg p-4">
-                <h3 className="heading-gold heading-display text-center mb-[clamp(0.35rem,1.5vh,0.6rem)]"
-                  style={{ fontSize: "clamp(1.1rem, 4.5vw, 1.5rem)", letterSpacing: "0.1em", color: "#fff9f3" }}>
+              <div className="rounded-lg px-3 py-[clamp(0.5rem,1.5vh,0.85rem)]">
+                <h3 className="heading-gold heading-display text-center mb-[clamp(0.25rem,1vh,0.4rem)]"
+                  style={{ fontSize: "clamp(1rem, 4vw, 1.3rem)", letterSpacing: "0.08em", color: "#fff9f3" }}>
                   {name}
                 </h3>
-                <div className="space-y-[clamp(0.35rem,1.5vh,0.6rem)]">
-                  {[
-                    {
-                      label: "Date", value: date,
-                      icon: (
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                          <rect x="3" y="5" width="18" height="16" rx="2" stroke="#fff9f3" strokeWidth="1.5"/>
-                          <path d="M3 9h18M8 3v4M16 3v4" stroke="#fff9f3" strokeWidth="1.5" strokeLinecap="round"/>
-                        </svg>
-                      ),
-                    },
-                    {
-                      label: "Time", value: time,
-                      icon: (
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                          <circle cx="12" cy="12" r="9" stroke="#fff9f3" strokeWidth="1.5"/>
-                          <path d="M12 7v5l3 2" stroke="#fff9f3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      ),
-                    },
-                    {
-                      label: "Venue", value: venue, sub: address,
-                      icon: (
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                          <path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11Z" stroke="#fff9f3" strokeWidth="1.5"/>
-                          <circle cx="12" cy="10" r="2.5" stroke="#fff9f3" strokeWidth="1.5"/>
-                        </svg>
-                      ),
-                    },
-                  ].map(({ label, value, icon, sub }) => (
-                    <div key={label} className={`flex justify-center gap-2.5 ${sub ? "items-start" : "items-center"}`}>
-                      <div className="flex-shrink-0" style={sub ? { marginTop: "0.15em" } : undefined}>{icon}</div>
-                      <div className="text-center">
-                        <p className="text-[#fff9f3] text-base" style={{ fontFamily: "var(--font-seasons)" }}>{value}</p>
-                        {sub && <p className="text-xs text-[#fff9f3]/60 mt-0.5">{sub}</p>}
-                        {label === "Venue" && (
-                          <a href={googleMapsUrl} target="_blank" rel="noopener noreferrer"
-                            className="inline-block text-xs text-[#fff9f3] underline mt-1 hover:text-[#fff9f3] transition-colors">
-                            Get Directions
-                          </a>
-                        )}
-                      </div>
-                    </div>
-                  ))}
+                <div className="flex items-center justify-center flex-wrap mb-[clamp(0.2rem,1vh,0.35rem)]" style={{ columnGap: "clamp(0.6rem,3vw,1.5rem)", rowGap: "0.2rem" }}>
+                  <span className="flex items-center gap-1.5">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="flex-shrink-0">
+                      <rect x="3" y="5" width="18" height="16" rx="2" stroke="#fff9f3" strokeWidth="1.5"/>
+                      <path d="M3 9h18M8 3v4M16 3v4" stroke="#fff9f3" strokeWidth="1.5" strokeLinecap="round"/>
+                    </svg>
+                    <p className="text-[#fff9f3] text-sm" style={{ fontFamily: "var(--font-seasons)" }}>{date}</p>
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="flex-shrink-0">
+                      <circle cx="12" cy="12" r="9" stroke="#fff9f3" strokeWidth="1.5"/>
+                      <path d="M12 7v5l3 2" stroke="#fff9f3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                    <p className="text-[#fff9f3] text-sm" style={{ fontFamily: "var(--font-seasons)" }}>{time}</p>
+                  </span>
+                </div>
+                <div className="flex items-start justify-center gap-1.5">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="flex-shrink-0" style={{ marginTop: "0.15em" }}>
+                    <path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11Z" stroke="#fff9f3" strokeWidth="1.5"/>
+                    <circle cx="12" cy="10" r="2.5" stroke="#fff9f3" strokeWidth="1.5"/>
+                  </svg>
+                  <div className="text-center">
+                    <p className="text-[#fff9f3] text-sm" style={{ fontFamily: "var(--font-seasons)" }}>{venue}</p>
+                    <p className="text-xs text-[#fff9f3]/60 mt-0.5">{address}</p>
+                    <a href={googleMapsUrl} target="_blank" rel="noopener noreferrer"
+                      className="inline-block text-xs text-[#fff9f3] underline mt-1 hover:text-[#fff9f3] transition-colors">
+                      Get Directions
+                    </a>
+                  </div>
                 </div>
               </div>
             </AnimateOnScroll>
