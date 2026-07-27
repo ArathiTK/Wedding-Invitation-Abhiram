@@ -10,8 +10,6 @@ export default function EventsSection() {
       time: WEDDING.preWeddingReception.time,
       venue: WEDDING.preWeddingReception.venue,
       address: WEDDING.preWeddingReception.address,
-      cardBg: "url('/assets/bg.png')",
-      cardBgPosition: "center",
       googleMapsUrl: WEDDING.preWeddingReception.googleMapsUrl,
       calUrl: makeGoogleCalendarUrl({
         title: "Abhiram TK & Athira K — Pre-Wedding Reception",
@@ -28,8 +26,6 @@ export default function EventsSection() {
       time: WEDDING.ceremony.time,
       venue: WEDDING.ceremony.venue,
       address: WEDDING.ceremony.address,
-      cardBg: "url('/assets/bg.png')",
-      cardBgPosition: "center 20%",
       googleMapsUrl: WEDDING.ceremony.googleMapsUrl,
       calUrl: makeGoogleCalendarUrl({
         title: "Abhiram TK & Athira K — Wedding Ceremony",
@@ -46,8 +42,6 @@ export default function EventsSection() {
       time: WEDDING.reception.time,
       venue: WEDDING.reception.venue,
       address: WEDDING.reception.address,
-      cardBg: "url('/assets/bg.png')",
-      cardBgPosition: "center",
       googleMapsUrl: WEDDING.reception.googleMapsUrl,
       calUrl: makeGoogleCalendarUrl({
         title: "Abhiram TK & Athira K — Wedding Reception",
