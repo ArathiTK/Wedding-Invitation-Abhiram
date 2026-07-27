@@ -10,10 +10,11 @@ interface TimeLeft {
   seconds: number;
 }
 
-function getTimeLeft(): TimeLeft {
-  const diff = WEDDING_DATE.getTime() - Date.now();
-  if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+function getTimeLeft(): TimeLeft & { elapsed: boolean } {
+  const diff = Math.abs(Date.now() - WEDDING_DATE.getTime());
+  const elapsed = Date.now() >= WEDDING_DATE.getTime();
   return {
+    elapsed,
     days: Math.floor(diff / (1000 * 60 * 60 * 24)),
     hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
     minutes: Math.floor((diff / (1000 * 60)) % 60),
@@ -26,7 +27,7 @@ function pad(n: number) {
 }
 
 export default function CountdownTimer() {
-  const [time, setTime] = useState<TimeLeft | null>(null);
+  const [time, setTime] = useState<(TimeLeft & { elapsed: boolean }) | null>(null);
 
   useEffect(() => {
     setTime(getTimeLeft());
@@ -44,8 +45,17 @@ export default function CountdownTimer() {
   ];
 
   return (
-    <div className="flex gap-4 justify-center flex-wrap">
-      {units.map(({ label, value }) => (
+    <div className="flex flex-col items-center gap-2">
+      {time.elapsed && (
+        <span
+          className="text-sm tracking-widest uppercase text-white/80"
+          style={{ fontFamily: "var(--font-seasons)" }}
+        >
+          Wedded Since
+        </span>
+      )}
+      <div className="flex gap-4 justify-center flex-wrap">
+        {units.map(({ label, value }) => (
         <div key={label} className="flex flex-col items-center min-w-[60px]">
           <span
             className="text-3xl font-light text-white tabular-nums leading-none"
@@ -55,7 +65,8 @@ export default function CountdownTimer() {
           </span>
           <span className="text-xs tracking-widest uppercase text-white/70 mt-1">{label}</span>
         </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
