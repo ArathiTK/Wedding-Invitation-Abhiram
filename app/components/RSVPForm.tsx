@@ -33,7 +33,7 @@ export default function RSVPForm() {
 
   async function onSubmit(data: RSVPData) {
     setSubmitting(true); setError("");
-    try { await submitRSVP({ ...data, guestCount: data.guestCount || 0 }); setSubmitted(true); }
+    try { await submitRSVP({ ...data, guestCount: isDeclining ? 0 : data.guestCount }); setSubmitted(true); }
     catch (e) { setError(e instanceof Error ? e.message : "Something went wrong."); }
     finally { setSubmitting(false); }
   }
