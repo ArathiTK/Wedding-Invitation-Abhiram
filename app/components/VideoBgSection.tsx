@@ -9,8 +9,6 @@ export default function VideoBgSection() {
     const v = videoRef.current;
     if (!v) return;
 
-    // load() only once — buffers the video without discarding progress on retry
-    v.load();
     v.playbackRate = 0.5;
 
     // Signal section 1 that section 2 is buffered and ready
@@ -20,8 +18,11 @@ export default function VideoBgSection() {
 
     const tryPlay = () => { v.playbackRate = 0.5; return v.play().catch(() => {}); };
 
-    // Play immediately; keep retrying on every gesture until it succeeds
-    tryPlay();
+    // This section starts off-screen (page 2 of the pager), so we deliberately do NOT
+    // load()/play() on mount — that would compete for bandwidth with the envelope and
+    // first-page videos during initial load. Instead we wait for the IntersectionObserver
+    // below to fire once the section actually scrolls near the viewport, which also
+    // performs the first load()+play() call.
     const onGesture = () => {
       v.play().then(() => {
         // Successfully playing — remove listeners
@@ -64,7 +65,7 @@ export default function VideoBgSection() {
         muted
         playsInline
         webkit-playsinline="true"
-        preload="auto"
+        preload="metadata"
         className="absolute inset-0 w-full h-full object-cover pointer-events-none"
         onCanPlay={e => { (e.target as HTMLVideoElement).playbackRate = 0.5; }}
         suppressHydrationWarning

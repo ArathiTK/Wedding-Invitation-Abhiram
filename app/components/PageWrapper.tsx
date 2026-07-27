@@ -30,7 +30,10 @@ export default function PageWrapper({ children }: { children: React.ReactNode })
     frameRef.current = requestAnimationFrame(tick);
   }
 
-  // Step 1 — unlock audio inside the tap gesture (iOS requires this)
+  // Step 1 — unlock audio inside the tap gesture (iOS requires this). This runs
+  // synchronously from EnvelopeIntro's onClick handler (see EnvelopeIntro.tsx handleTap),
+  // so background audio starts playing the instant the user taps "Tap to open" —
+  // in parallel with the envelope video, not after it finishes.
   function handleTap() {
     const audio = audioRef.current;
     if (!audio) return;
@@ -93,7 +96,11 @@ export default function PageWrapper({ children }: { children: React.ReactNode })
   return (
     <IntroContext.Provider value={{ opened }}>
       <div className="relative">
-        <audio ref={audioRef} src={TRACK} loop preload="auto" aria-hidden="true" />
+        {/* preload="none": this 15MB track shouldn't compete with the envelope video's
+            bandwidth before the user has even tapped. handleTap() calls audio.play()
+            directly inside the tap gesture, which starts the fetch immediately — so
+            playback still begins the instant the user taps "Tap to open". */}
+        <audio ref={audioRef} src={TRACK} loop preload="none" aria-hidden="true" />
         <AnimatePresence>
           {!opened && (
             <EnvelopeIntro
