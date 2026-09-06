@@ -19,16 +19,16 @@ export const viewport: Viewport = {
 
 const siteTitle =
   process.env.NEXT_PUBLIC_SITE_TITLE ||
-  "Abhiram TK & Athira K — Wedding Invitation";
+  "Athira K & Abhiram TK — Wedding Invitation";
 
 const siteDescription =
   process.env.NEXT_PUBLIC_SITE_DESCRIPTION ||
-  "Join us to celebrate the wedding of Abhiram TK & Athira K";
+  "Join us to celebrate the wedding of Athira K & Abhiram TK";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ||
-      "https://wedding-invitation-abhiram-athira.vercel.app"
+      "https://wedding-invitation-athira-abhiram.vercel.app"
   ),
   title: siteTitle,
   description: siteDescription,
