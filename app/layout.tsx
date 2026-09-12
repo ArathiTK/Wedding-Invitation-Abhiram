@@ -26,12 +26,20 @@ export const metadata: Metadata = {
     title: "Abhiram TK & Athira K — Wedding Invitation",
     description: "Join us to celebrate the wedding of Abhiram TK & Athira K, November 2026.",
     type: "website",
-    images: [{ url: "/assets/og-image.png?v=5", width: 1200, height: 630 }],
+    images: [
+      {
+        url: "/assets/og-image.jpg?v=6",
+        width: 1200,
+        height: 630,
+        type: "image/jpeg",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Abhiram TK & Athira K — Wedding Invitation",
     description: "Join us to celebrate the wedding of Abhiram TK & Athira K, November 2026.",
+    images: ["/assets/og-image.jpg?v=6"],
   },
 };
 
