@@ -56,6 +56,16 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${cormorant.variable} h-full`}>
+      <head>
+        {/*
+          Preloaded (not fetchPriority="high") so it doesn't compete with the envelope
+          video/poster for bandwidth on first paint, but starts downloading well ahead
+          of when the save-the-date section needs it — its own poster fetch used to only
+          start once that section mounted, which is what caused the blank flash between
+          the envelope closing and this section's video taking over.
+        */}
+        <link rel="preload" as="image" href="/assets/poster-card.jpg" fetchPriority="low" />
+      </head>
       <body className="min-h-full antialiased" style={{ backgroundColor: "#1f2519" }}>
         {/* Mobile-width container — centred on desktop, full-width on mobile */}
         <div

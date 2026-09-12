@@ -5,18 +5,25 @@ import CountdownTimer from "./ui/CountdownTimer";
 import { useIntro } from "@/app/context/IntroContext";
 
 export default function SaveTheDateSection() {
-  const { opened } = useIntro();
+  const { opened, tapped } = useIntro();
   const videoRef = useRef<HTMLVideoElement>(null);
+  const loadedRef = useRef(false);
+
+  // Stay unbuffered behind the envelope overlay while idle — only start pulling this
+  // video's bytes once the guest has tapped to open, so it doesn't compete for
+  // bandwidth during the critical first paint. From that point on it buffers in the
+  // background for the ~duration of the envelope video, so by the time the envelope
+  // finishes and this section becomes visible there's no blank/loading gap.
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v || !tapped || loadedRef.current) return;
+    loadedRef.current = true;
+    v.load();
+  }, [tapped]);
 
   useEffect(() => {
     const v = videoRef.current;
-    // Stay unbuffered behind the envelope overlay — only start pulling this video's
-    // bytes once the envelope is opened, so it doesn't compete for bandwidth with the
-    // envelope video during the critical first paint.
     if (!v || !opened) return;
-
-    // load() only once — buffers the video without discarding progress on retry
-    v.load();
 
     const tryPlay = () => v.play().catch(() => {});
 
@@ -64,7 +71,7 @@ export default function SaveTheDateSection() {
         loop
         muted
         playsInline
-        preload={opened ? "auto" : "none"}
+        preload={tapped ? "auto" : "none"}
         poster="/assets/poster-card.jpg"
         className="absolute inset-0 w-full h-full object-cover pointer-events-none"
         suppressHydrationWarning

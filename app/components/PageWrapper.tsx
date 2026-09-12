@@ -11,6 +11,7 @@ const FADE_DURATION = 4000;
 
 export default function PageWrapper({ children }: { children: React.ReactNode }) {
   const [opened, setOpened] = useState(false);
+  const [tapped, setTapped] = useState(false);
   const [started, setStarted] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const fadingRef = useRef(false);
@@ -37,6 +38,10 @@ export default function PageWrapper({ children }: { children: React.ReactNode })
   // here (muted) means background audio begins loading/playing the instant the user
   // taps, in parallel with the envelope video, rather than waiting for the video to end.
   function handleTap() {
+    // Kick off preloading of the next section's video/poster right away so it has
+    // the envelope video's playback time as a head start, instead of only starting
+    // to fetch once the envelope is already gone (which caused a visible blank/blink).
+    setTapped(true);
     const audio = audioRef.current;
     if (!audio) return;
     audio.volume = 0;
@@ -96,7 +101,7 @@ export default function PageWrapper({ children }: { children: React.ReactNode })
   useEffect(() => () => cancelAnimationFrame(frameRef.current), []);
 
   return (
-    <IntroContext.Provider value={{ opened }}>
+    <IntroContext.Provider value={{ opened, tapped }}>
       <div className="relative">
         {/*
           preload="none": this 15MB track must not compete with the envelope video's
