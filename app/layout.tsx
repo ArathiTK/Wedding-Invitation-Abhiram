@@ -28,7 +28,7 @@ const siteDescription =
 export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ||
-      "https://wedding-invitation-abhiram-athira.vercel.app"
+      "https://wedding-invitation-athira-abhiram.vercel.app"
   ),
   title: siteTitle,
   description: siteDescription,
@@ -36,11 +36,20 @@ export const metadata: Metadata = {
     title: siteTitle,
     description: siteDescription,
     type: "website",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        type: "image/jpeg",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: siteTitle,
     description: siteDescription,
+    images: ["/opengraph-image"],
   },
 };
 
