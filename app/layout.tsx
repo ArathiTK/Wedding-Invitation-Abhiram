@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/assets/og-image.jpg?v=6",
+        url: "/assets/og-image.jpg?v=7",
         width: 1200,
         height: 630,
         type: "image/jpeg",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Abhiram TK & Athira K — Wedding Invitation",
     description: "Join us to celebrate the wedding of Abhiram TK & Athira K, November 2026.",
-    images: ["/assets/og-image.jpg?v=6"],
+    images: ["/assets/og-image.jpg?v=7"],
   },
 };
 
