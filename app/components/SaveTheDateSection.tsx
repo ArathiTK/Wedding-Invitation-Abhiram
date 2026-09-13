@@ -5,22 +5,34 @@ import CountdownTimer from "./ui/CountdownTimer";
 import { useIntro } from "@/app/context/IntroContext";
 
 export default function SaveTheDateSection() {
-  const { opened } = useIntro();
+  const { opened, tapped } = useIntro();
   const videoRef = useRef<HTMLVideoElement>(null);
+  const openedRef = useRef(opened);
 
   useEffect(() => {
+    openedRef.current = opened;
+    if (opened) videoRef.current?.play().catch(() => {});
+  }, [opened]);
+
+  useEffect(() => {
+    // Start buffering the instant the envelope is tapped — well before it
+    // finishes playing — so this video has a frame ready to paint the moment
+    // the envelope disappears, instead of only starting its fetch then.
+    if (!tapped) return;
     const v = videoRef.current;
     if (!v) return;
 
     // load() only once — buffers the video without discarding progress on retry
     v.load();
 
-    const tryPlay = () => v.play().catch(() => {});
+    // Actual playback stays gated on `opened` so nothing plays behind the envelope early
+    const tryPlay = () => { if (openedRef.current) v.play().catch(() => {}); };
 
     // Wait for section 2 to be buffered before starting section 1 playback
     const onSection2Ready = () => tryPlay();
     document.addEventListener("section2ready", onSection2Ready, { once: true });
     const onGesture = () => {
+      if (!openedRef.current) return;
       v.play().then(() => {
         document.removeEventListener("touchstart", onGesture);
         document.removeEventListener("click", onGesture);
@@ -50,18 +62,17 @@ export default function SaveTheDateSection() {
       document.removeEventListener("click", onGesture);
       document.removeEventListener("section2ready", onSection2Ready);
     };
-  }, []);
+  }, [tapped]);
 
   return (
     <section className="relative overflow-hidden" style={{ minHeight: "100svh", width: "100%" }}>
       <video
         ref={videoRef}
         src="/assets/bg%20video%203%20-%20card.mp4"
-        autoPlay
         loop
         muted
         playsInline
-        preload="auto"
+        preload={tapped ? "auto" : "none"}
         className="absolute inset-0 w-full h-full object-cover pointer-events-none"
         suppressHydrationWarning
       />

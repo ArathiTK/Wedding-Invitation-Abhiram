@@ -15,6 +15,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
+  themeColor: "#1f2519",
 };
 
 export const metadata: Metadata = {
@@ -46,6 +47,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${cormorant.variable} h-full`}>
+      <head>
+        <link rel="preload" href="/assets/bg%20video%203%20-%20evelope.mp4" as="video" type="video/mp4" fetchPriority="high" />
+      </head>
       <body className="min-h-full antialiased" style={{ backgroundColor: "#1f2519" }}>
         {/* Mobile-width container — centred on desktop, full-width on mobile */}
         <div

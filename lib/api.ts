@@ -5,15 +5,10 @@ export interface RSVPData {
 }
 
 export async function submitRSVP(data: RSVPData): Promise<{ success: boolean; message: string }> {
-  const res = await fetch(process.env.NEXT_PUBLIC_GOOGLE_SHEET_URL!, {
+  const res = await fetch("/api/rsvp", {
     method: "POST",
-    headers: { "Content-Type": "text/plain;charset=utf-8" },
-    body: JSON.stringify({
-      name: data.name,
-      guests: data.guestCount,
-      attendance: data.attendance,
-      targetTab: process.env.NEXT_PUBLIC_TARGET_TAB || "Abhiram",
-    }),
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
   });
   if (!res.ok) {
     const err = await res.json().catch(() => ({}));
