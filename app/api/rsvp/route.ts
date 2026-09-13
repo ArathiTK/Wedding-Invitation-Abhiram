@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse, after } from "next/server";
 
 const ATTENDANCE_CODES: Record<string, string> = {
   "Pre-Wedding, Wedding & Reception": "all-events",
@@ -51,16 +51,24 @@ export async function POST(req: NextRequest) {
 
     const sheetUrl = process.env.NEXT_PUBLIC_GOOGLE_SHEET_URL;
     if (sheetUrl) {
-      const sheetRes = await fetch(sheetUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+      // Google Apps Script webhooks can take longer than typical serverless
+      // function limits to respond, even though the write itself succeeds.
+      // Don't block the user-facing response on it — record the RSVP after
+      // the response has been sent, and only log if it truly fails.
+      after(async () => {
+        try {
+          const sheetRes = await fetch(sheetUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+          if (!sheetRes.ok) {
+            console.error("Google Sheet submission failed:", sheetRes.status, await sheetRes.text().catch(() => ""));
+          }
+        } catch (e) {
+          console.error("Google Sheet submission error:", e);
+        }
       });
-
-      if (!sheetRes.ok) {
-        console.error("Google Sheet submission failed:", sheetRes.status, await sheetRes.text().catch(() => ""));
-        return NextResponse.json({ message: "Failed to record RSVP" }, { status: 502 });
-      }
     } else {
       console.log("RSVP Received (no sheet URL configured):", payload);
     }
